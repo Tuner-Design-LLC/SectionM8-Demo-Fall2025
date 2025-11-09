@@ -1,11 +1,14 @@
 """
 hud_crawler_test.py
 
-Simple test harness for the `HUDCrawler` in the same style as
+Simple test harness for the HUDCrawler in the same style as
 `FMRCrawlerTest.py`. This script builds a tiny test DataFrame with
-representative columns, runs the crawler's `normalize()` method, writes
+representative columns, runs the crawler's normalize() method, writes
 a CSV for inspection and prints a small summary.
 """
+# NOTICE - This module is purely for testing to match the FMR Crawler
+# Future iterations of FMR & HUD Crawler before class demo will read off of the demo Excel docs
+
 from datetime import datetime, timezone
 import os
 import pandas as pd
