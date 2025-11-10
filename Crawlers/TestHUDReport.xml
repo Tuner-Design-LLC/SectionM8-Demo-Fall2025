@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='utf-8'?>
+<HUDReports>
+  <Report id="0">
+    <dataset_name>TestHUDDataset</dataset_name>
+    <fiscal_year>2025</fiscal_year>
+    <state_name>TestState</state_name>
+    <state_code>TS</state_code>
+    <county_name>County0</county_name>
+    <fips_code>1000</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code></msa_code>
+    <area_type>Urban</area_type>
+    <ami_median_family_income></ami_median_family_income>
+    <ami_30_percent_limit></ami_30_percent_limit>
+    <ami_50_percent_limit></ami_50_percent_limit>
+    <ami_80_percent_limit></ami_80_percent_limit>
+    <household_size></household_size>
+    <program_type>TestProgram</program_type>
+    <sub_program></sub_program>
+    <total_units>10</total_units>
+    <occupied_units></occupied_units>
+    <vacancy_rate></vacancy_rate>
+    <assisted_units>2</assisted_units>
+    <funding_source></funding_source>
+    <property_id>P0</property_id>
+    <property_name>Property 0</property_name>
+    <property_address>0 Test St, TestCity, TS</property_address>
+    <property_type></property_type>
+    <construction_year></construction_year>
+    <owner_entity></owner_entity>
+    <managing_agent></managing_agent>
+    <hud_inspection_score></hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date></affordability_end_date>
+    <latitude>40.0</latitude>
+    <longitude>-75.0</longitude>
+    <census_tract></census_tract>
+    <cbsa_code></cbsa_code>
+    <hud_region_name></hud_region_name>
+    <rural_indicator></rural_indicator>
+    <source_url>http://example.org/dataset</source_url>
+    <scrape_date>2025-11-09T04:26:35.575792+00:00</scrape_date>
+    <dataset_last_updated>2025-11-09 04:26:35.575792+00:00</dataset_last_updated>
+    <update_frequency>manual</update_frequency>
+    <data_license>test</data_license>
+    <crawler_run_id>test-run-1</crawler_run_id>
+    <version_hash>testhash-001</version_hash>
+  </Report>
+  <Report id="1">
+    <dataset_name>TestHUDDataset</dataset_name>
+    <fiscal_year>2025</fiscal_year>
+    <state_name>TestState</state_name>
+    <state_code>TS</state_code>
+    <county_name>County1</county_name>
+    <fips_code>1001</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code></msa_code>
+    <area_type>Urban</area_type>
+    <ami_median_family_income></ami_median_family_income>
+    <ami_30_percent_limit></ami_30_percent_limit>
+    <ami_50_percent_limit></ami_50_percent_limit>
+    <ami_80_percent_limit></ami_80_percent_limit>
+    <household_size></household_size>
+    <program_type>TestProgram</program_type>
+    <sub_program></sub_program>
+    <total_units>11</total_units>
+    <occupied_units></occupied_units>
+    <vacancy_rate></vacancy_rate>
+    <assisted_units>3</assisted_units>
+    <funding_source></funding_source>
+    <property_id>P1</property_id>
+    <property_name>Property 1</property_name>
+    <property_address>1 Test St, TestCity, TS</property_address>
+    <property_type></property_type>
+    <construction_year></construction_year>
+    <owner_entity></owner_entity>
+    <managing_agent></managing_agent>
+    <hud_inspection_score></hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date></affordability_end_date>
+    <latitude>40.01</latitude>
+    <longitude>-75.01</longitude>
+    <census_tract></census_tract>
+    <cbsa_code></cbsa_code>
+    <hud_region_name></hud_region_name>
+    <rural_indicator></rural_indicator>
+    <source_url>http://example.org/dataset</source_url>
+    <scrape_date>2025-11-09T04:26:35.575792+00:00</scrape_date>
+    <dataset_last_updated>2025-11-09 04:26:35.575792+00:00</dataset_last_updated>
+    <update_frequency>manual</update_frequency>
+    <data_license>test</data_license>
+    <crawler_run_id>test-run-1</crawler_run_id>
+    <version_hash>testhash-001</version_hash>
+  </Report>
+  <Report id="2">
+    <dataset_name>TestHUDDataset</dataset_name>
+    <fiscal_year>2025</fiscal_year>
+    <state_name>TestState</state_name>
+    <state_code>TS</state_code>
+    <county_name>County2</county_name>
+    <fips_code>1002</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code></msa_code>
+    <area_type>Urban</area_type>
+    <ami_median_family_income></ami_median_family_income>
+    <ami_30_percent_limit></ami_30_percent_limit>
+    <ami_50_percent_limit></ami_50_percent_limit>
+    <ami_80_percent_limit></ami_80_percent_limit>
+    <household_size></household_size>
+    <program_type>TestProgram</program_type>
+    <sub_program></sub_program>
+    <total_units>12</total_units>
+    <occupied_units></occupied_units>
+    <vacancy_rate></vacancy_rate>
+    <assisted_units>4</assisted_units>
+    <funding_source></funding_source>
+    <property_id>P2</property_id>
+    <property_name>Property 2</property_name>
+    <property_address>2 Test St, TestCity, TS</property_address>
+    <property_type></property_type>
+    <construction_year></construction_year>
+    <owner_entity></owner_entity>
+    <managing_agent></managing_agent>
+    <hud_inspection_score></hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date></affordability_end_date>
+    <latitude>40.02</latitude>
+    <longitude>-75.02</longitude>
+    <census_tract></census_tract>
+    <cbsa_code></cbsa_code>
+    <hud_region_name></hud_region_name>
+    <rural_indicator></rural_indicator>
+    <source_url>http://example.org/dataset</source_url>
+    <scrape_date>2025-11-09T04:26:35.575792+00:00</scrape_date>
+    <dataset_last_updated>2025-11-09 04:26:35.575792+00:00</dataset_last_updated>
+    <update_frequency>manual</update_frequency>
+    <data_license>test</data_license>
+    <crawler_run_id>test-run-1</crawler_run_id>
+    <version_hash>testhash-001</version_hash>
+  </Report>
+</HUDReports>
