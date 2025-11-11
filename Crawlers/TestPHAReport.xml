@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<PHAReports>
+  <PHA id="0">
+    <pha_code>PHA001</pha_code>
+    <name>Test PHA</name>
+    <hud_regional_code>1</hud_regional_code>
+    <jurisdiction>CountyTest</jurisdiction>
+    <address>123 Main St</address>
+    <city>TestCity</city>
+    <state_code>TS</state_code>
+    <state_name>TestState</state_name>
+    <zip_code>12345</zip_code>
+    <county_name>TestCounty</county_name>
+    <fips_code>0001</fips_code>
+    <program_type>HCV</program_type>
+    <num_hcv_units>100</num_hcv_units>
+    <num_public_units>50</num_public_units>
+    <num_total_assisted>150</num_total_assisted>
+    <waiting_list_status>Open</waiting_list_status>
+    <occupancy_rate>0.95</occupancy_rate>
+    <hcv_util_rate>0.9</hcv_util_rate>
+    <latitude>40.0</latitude>
+    <longitude>-75.0</longitude>
+    <msa_code>1001</msa_code>
+    <rural_indicator>N</rural_indicator>
+    <annual_budget>5000000</annual_budget>
+    <capital_fund_allocation>1000000</capital_fund_allocation>
+    <financial_report_year>2025</financial_report_year>
+    <avg_tenant_income>30000</avg_tenant_income>
+    <median_rent_dist>1200</median_rent_dist>
+    <household_type_dist>Family</household_type_dist>
+    <avg_tenant_rent_share>0.3</avg_tenant_rent_share>
+    <avg_subsidy_amount>900</avg_subsidy_amount>
+    <semap_score>95</semap_score>
+    <last_hud_audit_date>2025-01-01</last_hud_audit_date>
+    <inspection_compliance_rate>0.98</inspection_compliance_rate>
+    <performance_category>High</performance_category>
+    <last_updated>2025-10-01</last_updated>
+    <source_url>http://example.org/pha</source_url>
+    <scrape_date>2025-11-11T03:45:10.030116+00:00</scrape_date>
+    <version_hash>v1.0</version_hash>
+    <dataset_last_update>2025-09-01</dataset_last_update>
+    <update_freq>monthly</update_freq>
+    <data_license>test</data_license>
+    <crawler_run_data>run001</crawler_run_data>
+    <phone_number>555-1234</phone_number>
+    <fax_line>555-5678</fax_line>
+    <email>contact@example.org</email>
+    <executive_director>John Doe</executive_director>
+    <contact_last_verified>2025-10-01</contact_last_verified>
+  </PHA>
+</PHAReports>
