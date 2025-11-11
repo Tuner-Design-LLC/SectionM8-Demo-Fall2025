@@ -1,10 +1,15 @@
 # PHACrawler.py
-# Prototype PHA crawler using consolidated domain objects from pha_domain.py
+# Prototype PHA crawler using consolidated domain objects from PHADomain.py
 
+import os
 import pandas as pd
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
-from PHADomain import Primary, HousingProgram, GeographicContextual, FinanceFunding, DemographicOccupancy, CompliancePerformance, AnalyticsMetadata, AdministrativeContact
+from PHADomain import (
+    Primary, HousingProgram, GeographicContextual, FinanceFunding,
+    DemographicOccupancy, CompliancePerformance, AnalyticsMetadata,
+    AdministrativeContact
+)
 
 class PHACrawler:
     """Prototype static file PHA crawler that normalizes data and creates XML reports."""
@@ -20,6 +25,8 @@ class PHACrawler:
         p = path or self.dataset_path
         if p is None:
             raise ValueError("Dataset path is required")
+        if not os.path.exists(p):
+            raise FileNotFoundError(f"Dataset file not found: {p}")
         if p.lower().endswith((".xls", ".xlsx")):
             self.raw = pd.read_excel(p, dtype=str)
         else:
@@ -65,17 +72,17 @@ class PHACrawler:
             for col in df.columns:
                 ET.SubElement(pha_elem, col).text = "" if pd.isna(row[col]) else str(row[col])
 
-        # Pretty print for readability
         try:
-            ET.indent(root, space="  ", level=0)
+            ET.indent(root, space="  ", level=0)  # Python 3.9+
         except AttributeError:
-            pass  # ET.indent available from Python 3.9
+            pass
 
         tree = ET.ElementTree(root)
         tree.write(out_path, encoding="utf-8", xml_declaration=True, short_empty_elements=False)
 
     # Generate example records using your domain objects
     def generate_record_objects(self):
+        self.records.clear()  # avoid duplicates
         for _, row in self.df.iterrows():
             primary = Primary(row["pha_code"], row["name"], row["hud_regional_code"], row["jurisdiction"],
                               row["address"], row["city"], row["state_code"], row["state_name"],
@@ -99,28 +106,21 @@ class PHACrawler:
                                             row["executive_director"], row["contact_last_verified"])
             self.records.append((primary, program, geo, finance, demo, compliance, analytics, contact))
 
-# Example usage
-if __name__ == "__main__":
-    crawler = PHACrawler()
-    # Load a CSV/XLSX if available; otherwise, create a test DataFrame manually
-    crawler.df = pd.DataFrame([{
-        "pha_code": "PHA001", "name": "Test PHA", "hud_regional_code": "1",
-        "jurisdiction": "CountyTest", "address": "123 Main St", "city": "TestCity",
-        "state_code": "TS", "state_name": "TestState", "zip_code": "12345", "county_name": "TestCounty",
-        "fips_code": "0001", "program_type": "HCV", "num_hcv_units": 100, "num_public_units": 50,
-        "num_total_assisted": 150, "waiting_list_status": "Open", "occupancy_rate": 0.95, "hcv_util_rate": 0.9,
-        "latitude": 40.0, "longitude": -75.0, "msa_code": "1001", "rural_indicator": "N", "annual_budget": 5000000,
-        "capital_fund_allocation": 1000000, "financial_report_year": 2025, "avg_tenant_income": 30000,
-        "median_rent_dist": 1200, "household_type_dist": "Family", "avg_tenant_rent_share": 0.3,
-        "avg_subsidy_amount": 900, "semap_score": 95, "last_hud_audit_date": "2025-01-01",
-        "inspection_compliance_rate": 0.98, "performance_category": "High", "last_updated": "2025-10-01",
-        "source_url": "http://example.org/pha", "scrape_date": datetime.now(timezone.utc).isoformat(),
-        "version_hash": "v1.0", "dataset_last_update": "2025-09-01", "update_freq": "monthly",
-        "data_license": "test", "crawler_run_data": "run001", "phone_number": "555-1234",
-        "fax_line": "555-5678", "email": "contact@example.org", "executive_director": "John Doe",
-        "contact_last_verified": "2025-10-01"
-    }])
 
-    crawler.generate_record_objects()
-    crawler.create_xml_report("TestPHAReport.xml")
-    print("PHA XML report generated successfully!")
+# Tester block
+
+if __name__ == "__main__":
+    crawler_folder = os.path.dirname(os.path.abspath(__file__))
+    excel_path = os.path.join(crawler_folder, "PHA_Crawler_Test_Excel.xlsx")
+    xml_path = os.path.join(crawler_folder, "TestPHAReport.xml")
+
+    try:
+        crawler = PHACrawler(excel_path)
+        crawler.load()
+        crawler.normalize()
+        crawler.generate_record_objects()
+        crawler.create_xml_report(xml_path)
+        print(f"PHA XML report generated successfully at: {xml_path}")
+        print(f"Total PHA records created: {len(crawler.records)}")
+    except Exception as e:
+        print(f"Error: {e}")
