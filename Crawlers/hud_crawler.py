@@ -57,6 +57,7 @@ class HUDCrawler:
             "ami_median_family_income","ami_30_percent_limit","ami_50_percent_limit","ami_80_percent_limit","household_size",
             "program_type","sub_program","total_units","occupied_units","vacancy_rate","assisted_units","funding_source",
             "property_id","property_name","property_address","property_type","construction_year","owner_entity","managing_agent",
+            "zip_code",
             "hud_inspection_score","last_inspection_date","affordability_end_date",
             "latitude","longitude","census_tract","cbsa_code","hud_region_name","rural_indicator",
             "source_url","scrape_date","dataset_last_updated","update_frequency","data_license","crawler_run_id","version_hash"
