@@ -10,17 +10,17 @@
     <hud_geoid></hud_geoid>
     <msa_code>37980</msa_code>
     <area_type>Metropolitan</area_type>
-    <ami_median_family_income></ami_median_family_income>
-    <ami_30_percent_limit></ami_30_percent_limit>
-    <ami_50_percent_limit></ami_50_percent_limit>
-    <ami_80_percent_limit></ami_80_percent_limit>
+    <ami_median_family_income>85000</ami_median_family_income>
+    <ami_30_percent_limit>24000</ami_30_percent_limit>
+    <ami_50_percent_limit>45000</ami_50_percent_limit>
+    <ami_80_percent_limit>67000</ami_80_percent_limit>
     <household_size>5 Person Household</household_size>
     <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
     <sub_program>Project Based Voucher</sub_program>
     <total_units>50</total_units>
     <occupied_units>40</occupied_units>
-    <vacancy_rate></vacancy_rate>
-    <assisted_units>35</assisted_units>
+    <vacancy_rate>0.065</vacancy_rate>
+    <assisted_units>30</assisted_units>
     <funding_source>HCV</funding_source>
     <property_id>PA123000010</property_id>
     <property_name>Mill Grove Apartments</property_name>
