@@ -17,10 +17,10 @@
     <household_size>5 Person Household</household_size>
     <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
     <sub_program>Project Based Voucher</sub_program>
-    <total_units>1135</total_units>
-    <occupied_units>1033</occupied_units>
+    <total_units>50</total_units>
+    <occupied_units>40</occupied_units>
     <vacancy_rate></vacancy_rate>
-    <assisted_units>970</assisted_units>
+    <assisted_units>35</assisted_units>
     <funding_source>HCV</funding_source>
     <property_id>PA123000010</property_id>
     <property_name>Mill Grove Apartments</property_name>
