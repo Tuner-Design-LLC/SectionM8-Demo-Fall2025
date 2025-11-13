@@ -1,6 +1,7 @@
 # Basic class to represent a Fair Market Rent (FMR) Crawler
 # This class is desigened to create report objects and export them to XML format.
 # The scraper class will impliment this class to create report objects from scraped data.
+import os
 import xml.etree.ElementTree as ET
 import FMRReport
 
@@ -52,8 +53,12 @@ class FMRCrawler:
         # create a tree from the root which is used to create the XML file
         tree = ET.ElementTree(root)
 
-        # write the tree to an XML file
-        with open("TestReport.xml", "wb") as file:
+        # write the tree to an XML file inside the repository-level `Test XMLs` folder
+        repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        out_dir = os.path.join(repo_root, "Test XMLs")
+        os.makedirs(out_dir, exist_ok=True)
+        out_path = os.path.join(out_dir, "TestReport.xml")
+        with open(out_path, "wb") as file:
             tree.write(file, encoding="utf-8", xml_declaration=True)
 
     #create and return a report object that has basic test data

@@ -112,7 +112,10 @@ class PHACrawler:
 if __name__ == "__main__":
     crawler_folder = os.path.dirname(os.path.abspath(__file__))
     excel_path = os.path.join(crawler_folder, "PHA_Crawler_Test_Excel.xlsx")
-    xml_path = os.path.join(crawler_folder, "TestPHAReport.xml")
+    repo_root = os.path.abspath(os.path.join(crawler_folder, ".."))
+    out_dir = os.path.join(repo_root, "Test XMLs")
+    os.makedirs(out_dir, exist_ok=True)
+    xml_path = os.path.join(out_dir, "TestPHAReport.xml")
 
     try:
         crawler = PHACrawler(excel_path)
