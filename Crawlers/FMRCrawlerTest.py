@@ -87,7 +87,8 @@ class FMRCrawler:
         Returns True if at least one row was added, False otherwise.
         """
         if excel_path is None:
-            excel_file = Path(__file__).resolve().parent / "FMR_Crawler_Test_Excel.xlsx"
+            repo_root = Path(__file__).resolve().parents[1]
+            excel_file = repo_root / "Test Excels" / "FMR_Crawler_Test_Excel.xlsx"
         else:
             excel_file = Path(excel_path)
 

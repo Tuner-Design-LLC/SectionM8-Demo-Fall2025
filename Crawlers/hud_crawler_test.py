@@ -87,8 +87,9 @@ def generate_test_df():
 # This function runs the test using HUDCrawler and the generated test DataFrame
 def run_test():
     crawler = HUDCrawler()
-    # Read the provided Excel document if it exists; otherwise fall back on generated test DataFrame object
-    excel_path = os.path.join(os.path.dirname(__file__), "HUD_Crawler_Test_Excel.xlsx")
+    # Read the provided Excel document if it exists in repo-level Test Excels; otherwise fall back on generated test DataFrame object
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+    excel_path = os.path.join(repo_root, "Test Excels", "HUD_Crawler_Test_Excel.xlsx")
     if os.path.exists(excel_path):
         print(f"Loading test Excel fixture: {excel_path}")
         crawler.load(excel_path)

@@ -1,9 +1,10 @@
+import os
 import pandas as pd
 from FMRReport import FMRCrawlerReport
 from FMRCrawlerTest import FMRCrawler
 
-# This is the path to the Excel File
-EXCEL_FILE = "C:\\FMRCrawlerProject\\SectionM8-Demo-Fall2025\\Crawlers\\FMR_Crawler_Test_Excel.xlsx"
+# This is the path to the Excel File (moved to repository-level "Test Excels" folder)
+EXCEL_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "Test Excels", "FMR_Crawler_Test_Excel.xlsx"))
 
 def scrape_data(file_path):
     # Load Excel file
