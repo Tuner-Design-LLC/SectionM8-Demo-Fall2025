@@ -167,19 +167,26 @@ public class ReportGUI {
     }
 
     public double getAverageBedroomsFMR(){
-        double temp=0;
-        if(filterEnabledFMR){
+        double temp = 0;
+        int count = 0;
+        if(filterEnabledFMR) {
             for(FMRReport report: FMRReportsFiltered){
-                temp+= Double.parseDouble(report.getNumBedrooms());
+                temp += Double.parseDouble(report.getNumBedrooms());
             }
-            return (temp/ FMRReportsFiltered.size());
-        }
-        else{
+            count = FMRReportsFiltered.size();
+        }else {
             for(FMRReport report: FMRreports){
-                temp+= Double.parseDouble(report.getNumBedrooms());
+                temp += Double.parseDouble(report.getNumBedrooms());
             }
-            return (temp/ FMRreports.size());
+            count = FMRreports.size();
         }
+
+        if (count == 0) {
+            return Double.NaN;
+        }
+
+        double avg = temp / count;
+        return (double) Math.round(avg);
     }
 
     //create a filtered list of reports by state FMR

@@ -207,17 +207,23 @@ public class ReportGUIController {
         ZipCode.setText(String.format(GUI1.getCurrentFMRReportZipCode()));
         State.setText(String.format(GUI1.getCurrentFMRReportState()));
 
-        FMRAverage.setText(String.format("$%.2f",GUI1.getAverageFMRNumber()));
-        IncomeAverage.setText(String.format("$%.2f",GUI1.getAverageIncomeFMR()));
-        BedroomAverage.setText(String.format("%.2f",GUI1.getAverageBedroomsFMR()));
-
-        //case where user enables filters with no reports in the filters list
-        if(Double.isNaN(GUI1.getAverageFMRNumber()))
+        double avgFMR = GUI1.getAverageFMRNumber();
+        if (Double.isNaN(avgFMR))
             FMRAverage.setText("");
-        if(Double.isNaN(GUI1.getAverageIncomeFMR()))
+        else
+            FMRAverage.setText(String.format("$%.2f", avgFMR));
+
+        double avgIncome = GUI1.getAverageIncomeFMR();
+        if (Double.isNaN(avgIncome))
             IncomeAverage.setText("");
-        if(Double.isNaN(GUI1.getAverageBedroomsFMR()))
+        else
+            IncomeAverage.setText(String.format("$%.2f", avgIncome));
+
+        double avgBedrooms = GUI1.getAverageBedroomsFMR();
+        if (Double.isNaN(avgBedrooms))
             BedroomAverage.setText("");
+        else
+            BedroomAverage.setText(String.format("%.0f", avgBedrooms));
     }
 
     //update all PHA text fields
