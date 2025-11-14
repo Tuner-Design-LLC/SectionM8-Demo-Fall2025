@@ -14,15 +14,15 @@ public class ReportGUI {
     private String filePath;
     private Boolean filterEnabledFMR;
     private int currentReportFMR;
-    private int currentReportPHP;
+    private int currentReportPHA;
     private ArrayList<FMRReport> FMRreports = new ArrayList<>();
-    private ArrayList<PHAReport> PHPreports = new ArrayList<>();
+    private ArrayList<PHAReport> PHAreports = new ArrayList<>();
     private ArrayList<FMRReport> FMRReportsFiltered = new ArrayList<>();
 
     public ReportGUI(){
         filterEnabledFMR = false;
         currentReportFMR =0;
-        currentReportPHP=0;
+        currentReportPHA=0;
     }
 
     //sets the file path to load from
@@ -65,20 +65,20 @@ public class ReportGUI {
         ArrayList<PHAReport> tempReports = new ArrayList<>(handler.getReports());
         for (PHAReport report:tempReports){
             boolean flag = true;
-            for(PHAReport baseReport:PHPreports){
+            for(PHAReport baseReport:PHAreports){
                 if (Integer.parseInt(report.getReportID()) == Integer.parseInt(baseReport.getReportID())) {
                     flag = false;
                     break;
                 }
             }
             if(flag)
-                PHPreports.add(report);
+                PHAreports.add(report);
         }
     }
 
     //methods for dealing with the current number of reports and the selected report
     public int getTotalNumOfReports(){
-        return FMRreports.size()+PHPreports.size();
+        return FMRreports.size()+PHAreports.size();
     }
 
     public int getNumOfReportsFMR(){
@@ -86,7 +86,7 @@ public class ReportGUI {
     }
 
     public int getNumOfReportsPHA(){
-        return PHPreports.size();
+        return PHAreports.size();
     }
 
     public int getCurrentReportFMR(){
@@ -98,11 +98,11 @@ public class ReportGUI {
     }
 
     public int getCurrentReportPHA(){
-        return currentReportPHP;
+        return currentReportPHA;
     }
 
     public void setCurrentReportPHA(int report){
-        currentReportPHP = report;
+        currentReportPHA = report;
     }
 
     //increase current report
@@ -121,15 +121,15 @@ public class ReportGUI {
 
     //increase current report PHP
     public void increaseCurrentReportPHA(){
-        if (currentReportPHP+1 < getNumOfReportsPHA()){
-            currentReportPHP++;
+        if (currentReportPHA+1 < getNumOfReportsPHA()){
+            currentReportPHA++;
         }
     }
 
     //decrease current report PHP
     public void decreaseCurrentReportPHA(){
-        if (currentReportPHP > 0){
-            currentReportPHP--;
+        if (currentReportPHA > 0){
+            currentReportPHA--;
         }
     }
 
@@ -241,22 +241,22 @@ public class ReportGUI {
 
     //get methods for PHP reports
     public String getCurrentPHAReportState(){
-        return PHPreports.get(currentReportPHP).getStateName();
+        return PHAreports.get(currentReportPHA).getStateName();
     }
 
     public String getCurrentPHAReportCity(){
-        return PHPreports.get(currentReportPHP).getCity();
+        return PHAreports.get(currentReportPHA).getCity();
     }
 
     public String getCurrentPHAReportCounty(){
-        return PHPreports.get(currentReportPHP).getCountyName();
+        return PHAreports.get(currentReportPHA).getCountyName();
     }
 
     public String getCurrentPHAReportZipCode(){
-        return PHPreports.get(currentReportPHP).getZipCode();
+        return PHAreports.get(currentReportPHA).getZipCode();
     }
 
     public String getCurrentPHAReportAddress(){
-        return PHPreports.get(currentReportPHP).getAddress();
+        return PHAreports.get(currentReportPHA).getAddress();
     }
 }
