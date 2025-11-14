@@ -7,8 +7,7 @@ from hud_crawler import HUDCrawler
 """
 hud_crawler_test.py
 
-Simple test adapter for the HUDCrawler in the same method as
-FMRCrawlerTest.py. This script builds a small test DataFrame with
+Simple test adapter for the HUDCrawler. This module builds a small test DataFrame with
 representative columns, runs the crawler's normalize() method, writes
 a CSV for inspection, and prints a small summary.
 """
