@@ -49,4 +49,151 @@
     <executive_director>Jane Doe</executive_director>
     <contact_last_verified>2025-10-15</contact_last_verified>
   </PHA>
+  <PHA id="1">
+    <pha_code>PA008</pha_code>
+    <name>Harrisburg Housing Authority</name>
+    <hud_regional_code></hud_regional_code>
+    <jurisdiction>Harrisburg, PA</jurisdiction>
+    <address>351 Chestnut St</address>
+    <city>Harrisburg</city>
+    <state_code>PA</state_code>
+    <state_name>Pennsylvania</state_name>
+    <zip_code>17101</zip_code>
+    <county_name>Dauphin</county_name>
+    <fips_code></fips_code>
+    <program_type>Public Housing + HCV</program_type>
+    <num_hcv_units>1274</num_hcv_units>
+    <num_public_units>1640</num_public_units>
+    <num_total_assisted>2914</num_total_assisted>
+    <waiting_list_status></waiting_list_status>
+    <occupancy_rate></occupancy_rate>
+    <hcv_util_rate></hcv_util_rate>
+    <latitude>40.2619</latitude>
+    <longitude>-76.8811</longitude>
+    <msa_code>25420</msa_code>
+    <rural_indicator>U</rural_indicator>
+    <annual_budget></annual_budget>
+    <capital_fund_allocation></capital_fund_allocation>
+    <financial_report_year>2025</financial_report_year>
+    <avg_tenant_income></avg_tenant_income>
+    <median_rent_dist></median_rent_dist>
+    <household_type_dist></household_type_dist>
+    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_subsidy_amount></avg_subsidy_amount>
+    <semap_score></semap_score>
+    <last_hud_audit_date></last_hud_audit_date>
+    <inspection_compliance_rate></inspection_compliance_rate>
+    <performance_category></performance_category>
+    <last_updated></last_updated>
+    <source_url>https://www.harrisburghousing.org</source_url>
+    <scrape_date>&lt;scrape_date&gt;</scrape_date>
+    <version_hash>&lt;version_hash&gt;</version_hash>
+    <dataset_last_update>&lt;dataset_last_update&gt;</dataset_last_update>
+    <update_freq>&lt;update_freq&gt;</update_freq>
+    <data_license>&lt;data_license&gt;</data_license>
+    <crawler_run_data>&lt;crawler_run_data&gt;</crawler_run_data>
+    <phone_number>717-232-6781</phone_number>
+    <fax_line>717-233-8355</fax_line>
+    <email>hha@harrisburghousing.org</email>
+    <executive_director></executive_director>
+    <contact_last_verified> 2025-11-17</contact_last_verified>
+  </PHA>
+  <PHA id="2">
+    <pha_code>PA002</pha_code>
+    <name>Philadelphia Housing Authority</name>
+    <hud_regional_code></hud_regional_code>
+    <jurisdiction>Philadelphia, PA</jurisdiction>
+    <address>2013 Ridge Avenue</address>
+    <city>Philadelphia</city>
+    <state_code>PA</state_code>
+    <state_name>Pennsylvania</state_name>
+    <zip_code>19121</zip_code>
+    <county_name>Philadelphia</county_name>
+    <fips_code></fips_code>
+    <program_type>Public Housing + HCV</program_type>
+    <num_hcv_units>18405</num_hcv_units>
+    <num_public_units>12972</num_public_units>
+    <num_total_assisted>31377</num_total_assisted>
+    <waiting_list_status></waiting_list_status>
+    <occupancy_rate></occupancy_rate>
+    <hcv_util_rate></hcv_util_rate>
+    <latitude>39.9526</latitude>
+    <longitude>-75.1652</longitude>
+    <msa_code>37980</msa_code>
+    <rural_indicator>U</rural_indicator>
+    <annual_budget>659730000</annual_budget>
+    <capital_fund_allocation></capital_fund_allocation>
+    <financial_report_year>2023</financial_report_year>
+    <avg_tenant_income>20090.18</avg_tenant_income>
+    <median_rent_dist></median_rent_dist>
+    <household_type_dist>{single_parent":52%, "other":…}"</household_type_dist>
+    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_subsidy_amount></avg_subsidy_amount>
+    <semap_score></semap_score>
+    <last_hud_audit_date></last_hud_audit_date>
+    <inspection_compliance_rate></inspection_compliance_rate>
+    <performance_category></performance_category>
+    <last_updated></last_updated>
+    <source_url></source_url>
+    <scrape_date></scrape_date>
+    <version_hash>https://www.pha.phila.gov</version_hash>
+    <dataset_last_update>&lt;scrape_date&gt;</dataset_last_update>
+    <update_freq>&lt;version_hash&gt;</update_freq>
+    <data_license>&lt;dataset_last_update&gt;</data_license>
+    <crawler_run_data>&lt;update_freq&gt;</crawler_run_data>
+    <phone_number>215-684-4000</phone_number>
+    <fax_line>215-684-4163</fax_line>
+    <email>info@pha.phila.gov</email>
+    <executive_director>Kelvin A. Jeremiah</executive_director>
+    <contact_last_verified> 2025-11-17</contact_last_verified>
+  </PHA>
+  <PHA id="3">
+    <pha_code>PA012</pha_code>
+    <name>Montgomery County Housing Authority</name>
+    <hud_regional_code></hud_regional_code>
+    <jurisdiction>Montgomery County, PA</jurisdiction>
+    <address>2231 Hamilton Avenue / other offices</address>
+    <city>Willow Grove / Pottstown / Norristown</city>
+    <state_code>PA</state_code>
+    <state_name>Pennsylvania</state_name>
+    <zip_code>19401</zip_code>
+    <county_name>Montgomery</county_name>
+    <fips_code></fips_code>
+    <program_type>Public Housing + HCV</program_type>
+    <num_hcv_units>2260</num_hcv_units>
+    <num_public_units>550</num_public_units>
+    <num_total_assisted>2810</num_total_assisted>
+    <waiting_list_status></waiting_list_status>
+    <occupancy_rate>0.95</occupancy_rate>
+    <hcv_util_rate></hcv_util_rate>
+    <latitude></latitude>
+    <longitude></longitude>
+    <msa_code></msa_code>
+    <rural_indicator>R</rural_indicator>
+    <annual_budget></annual_budget>
+    <capital_fund_allocation></capital_fund_allocation>
+    <financial_report_year></financial_report_year>
+    <avg_tenant_income></avg_tenant_income>
+    <median_rent_dist></median_rent_dist>
+    <household_type_dist></household_type_dist>
+    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_subsidy_amount></avg_subsidy_amount>
+    <semap_score></semap_score>
+    <last_hud_audit_date></last_hud_audit_date>
+    <inspection_compliance_rate></inspection_compliance_rate>
+    <performance_category></performance_category>
+    <last_updated></last_updated>
+    <source_url></source_url>
+    <scrape_date></scrape_date>
+    <version_hash>https://www.montcoha.org</version_hash>
+    <dataset_last_update>&lt;scrape_date&gt;</dataset_last_update>
+    <update_freq>&lt;version_hash&gt;</update_freq>
+    <data_license>&lt;dataset_last_update&gt;</data_license>
+    <crawler_run_data>&lt;update_freq&gt;</crawler_run_data>
+    <phone_number>610-275-5720</phone_number>
+    <fax_line>610-275-0889</fax_line>
+    <email>joel.johnson@montcoha.org</email>
+    <executive_director>Amanda Bone</executive_director>
+    <contact_last_verified> 2025-11-17</contact_last_verified>
+  </PHA>
 </PHAReports>
