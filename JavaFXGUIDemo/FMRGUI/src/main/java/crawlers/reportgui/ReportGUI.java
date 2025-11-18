@@ -266,4 +266,29 @@ public class ReportGUI {
     public String getCurrentPHAReportAddress(){
         return PHAreports.get(currentReportPHA).getAddress();
     }
+
+    public String getCurrentPHAReportJurisdiction() {
+        return PHAreports.get(currentReportPHA).getJurisdiction();
+    }
+
+    public String getCurrentPHAReportCode() {
+        return PHAreports.get(currentReportPHA).getPhaCode();
+    }
+
+    public String getCurrentPHAReportDirector() {
+        return PHAreports.get(currentReportPHA).getExecutiveDirector();
+    }
+
+    public String getCurrentPHAReportPhone() {
+        return PHAreports.get(currentReportPHA).getPhoneNumber();
+    }
+
+    public String getCurrentPHAReportFax() {
+        return PHAreports.get(currentReportPHA).getFaxLine();
+    }
+
+    public String getCurrentPHAReportEmail() {
+        return PHAreports.get(currentReportPHA).getEmail();
+    }
+
 }

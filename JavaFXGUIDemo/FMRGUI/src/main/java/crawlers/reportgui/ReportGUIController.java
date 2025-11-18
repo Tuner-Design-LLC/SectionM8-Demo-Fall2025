@@ -34,10 +34,19 @@ public class ReportGUIController {
     private TextField CurrentReportPHA;
 
     @FXML
+    private TextField DirectorPHA;
+
+    @FXML
+    private TextField EmailPHA;
+
+    @FXML
     private TextField FMRAverage;
 
     @FXML
     private TextField FMRNumber;
+
+    @FXML
+    private TextField FaxPHA;
 
     @FXML
     private TextField FilterState;
@@ -52,6 +61,9 @@ public class ReportGUIController {
     private TextField IncomeAverage;
 
     @FXML
+    private TextField JurisdictionPHA;
+
+    @FXML
     private TextField ManualEnterReport;
 
     @FXML
@@ -62,6 +74,12 @@ public class ReportGUIController {
 
     @FXML
     private TextField NumBedrooms;
+
+    @FXML
+    private TextField PHACode;
+
+    @FXML
+    private TextField PhonePHA;
 
     @FXML
     private TextField ReportPath;
@@ -79,16 +97,16 @@ public class ReportGUIController {
     private TextField TotalReports;
 
     @FXML
-    private TextField ZipCode;
-
-    @FXML
-    private TextField ZipCodePHA;
-
-    @FXML
     private TextField TotalReportsFMR;
 
     @FXML
     private TextField TotalReportsPHA;
+
+    @FXML
+    private TextField ZipCode;
+
+    @FXML
+    private TextField ZipCodePHA;
 
 
     @FXML //A testing load method that loads reports without having to input the file path by hand
@@ -237,6 +255,13 @@ public class ReportGUIController {
         CountyNamePHA.setText(String.format(GUI1.getCurrentPHAReportCounty()));
         ZipCodePHA.setText(String.format(GUI1.getCurrentPHAReportZipCode()));
         AddressPHA.setText(String.format(GUI1.getCurrentPHAReportAddress()));
+        JurisdictionPHA.setText(String.format(GUI1.getCurrentPHAReportJurisdiction()));
+        PHACode.setText(String.format(GUI1.getCurrentPHAReportCode()));
+        DirectorPHA.setText(String.format(GUI1.getCurrentPHAReportDirector()));
+        PhonePHA.setText(String.format(GUI1.getCurrentPHAReportPhone()));
+        FaxPHA.setText(String.format(GUI1.getCurrentPHAReportFax()));
+        EmailPHA.setText(String.format(GUI1.getCurrentPHAReportEmail()));
+
     }
 
     //clear all text fields to base values
@@ -264,6 +289,13 @@ public class ReportGUIController {
         CountyNamePHA.setText("");
         ZipCodePHA.setText("");
         AddressPHA.setText("");
+        JurisdictionPHA.setText("");
+        PHACode.setText("");
+        DirectorPHA.setText("");
+        PhonePHA.setText("");
+        FaxPHA.setText("");
+        EmailPHA.setText("");
+
     }
 
 }
