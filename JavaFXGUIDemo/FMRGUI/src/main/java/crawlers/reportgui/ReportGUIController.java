@@ -2,6 +2,8 @@ package crawlers.reportgui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
@@ -90,6 +92,9 @@ public class ReportGUIController {
     @FXML
     private TextField ReportPath;
 
+    @FXML
+    private TabPane MainTabPane;
+
 
     @FXML
     void BrowseReport(ActionEvent event) {
@@ -105,6 +110,46 @@ public class ReportGUIController {
             String path = selected.getAbsolutePath();
             // populate the existing ReportPath field (top browse field)
             ReportPath.setText(path);
+        }
+    }
+
+    @FXML
+    void OpenReports(ActionEvent event) {
+        if (MainTabPane == null || MainTabPane.getSelectionModel().getSelectedItem() == null) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Open Reports");
+            a.setHeaderText("No tab selected");
+            a.setContentText("Cannot determine which report type to open.");
+            a.showAndWait();
+            return;
+        }
+
+        String tabText = MainTabPane.getSelectionModel().getSelectedItem().getText();
+
+        try {
+            if ("FMR Reports".equals(tabText)) {
+                OpenReportFMR(event);
+            } else if ("PHA Reports".equals(tabText)) {
+                OpenReportPHA(event);
+            } else if ("HUD Reports".equals(tabText)) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Open Reports");
+                a.setHeaderText("Not implemented");
+                a.setContentText("Opening HUD reports is not implemented in this build.");
+                a.showAndWait();
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Open Reports");
+                a.setHeaderText("Unknown tab");
+                a.setContentText("Unrecognized tab: " + tabText);
+                a.showAndWait();
+            }
+        } catch (Exception ex) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Open Reports");
+            a.setHeaderText("Error opening report");
+            a.setContentText(ex.getMessage());
+            a.showAndWait();
         }
     }
 

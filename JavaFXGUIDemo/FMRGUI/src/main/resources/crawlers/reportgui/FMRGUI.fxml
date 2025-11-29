@@ -17,12 +17,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crawlers.reportgui.ReportGUIController">
     <children>
         <Label layoutX="14.0" layoutY="17.0" text="Report Data Path:" />
-        <TextField fx:id="ReportPath" layoutX="150.0" layoutY="13.0" prefHeight="25.0" prefWidth="540.0" promptText="Choose file or folder" />
-        <Button layoutX="700.0" layoutY="13.0" mnemonicParsing="false" onAction="#BrowseReport" text="Browse" />
-        <Label alignment="CENTER_RIGHT" layoutX="1041.0" layoutY="17.0" prefHeight="17.0" prefWidth="129.0" text="Total Reports Loaded:" />
-        <TextField fx:id="TotalReports" editable="false" layoutX="1170.0" layoutY="13.0" prefHeight="25.0" prefWidth="90.0" text="0" />
-        <Button layoutX="773.0" layoutY="13.0" mnemonicParsing="false" onAction="#ClearReports" text="Clear All Reports" />
-        <TabPane layoutX="7.0" layoutY="57.0" prefHeight="462.0" prefWidth="1256.0" tabClosingPolicy="UNAVAILABLE">
+        <TextField fx:id="ReportPath" layoutX="150.0" layoutY="13.0" prefHeight="25.0" prefWidth="480.0" promptText="Choose file or folder" />
+        <Button fx:id="BrowseButton" layoutX="642.0" layoutY="13.0" mnemonicParsing="false" onAction="#BrowseReport" text="Browse..." />
+        <Button fx:id="TopOpenReports" layoutX="718.0" layoutY="13.0" mnemonicParsing="false" onAction="#OpenReports" text="Open Reports" />
+        <Button fx:id="ClearButton" layoutX="820.0" layoutY="13.0" mnemonicParsing="false" onAction="#ClearReports" text="Clear All Reports" />
+        <Label alignment="CENTER_RIGHT" layoutX="998.0" layoutY="17.0" prefHeight="17.0" prefWidth="129.0" text="Total Reports Loaded:" />
+        <TextField fx:id="TotalReports" editable="false" layoutX="1142.0" layoutY="13.0" prefHeight="25.0" prefWidth="90.0" text="0" />
+        <TabPane fx:id="MainTabPane" layoutX="7.0" layoutY="57.0" prefHeight="462.0" prefWidth="1256.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="FMR Reports">
                     <content>
@@ -183,7 +184,7 @@
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
                                 <TextField fx:id="ManualEnterReport" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
                                 <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportFMR" text="Go To Report" />
-                                <Button layoutX="1116.0" layoutY="60.0" mnemonicParsing="false" onAction="#OpenReportFMR" text="Open Reports" />
+                                <!-- Open Reports moved to top; removed per design -->
                                 <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="FMR Reports Loaded:" />
                                 <TextField fx:id="TotalReportsFMR" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
                             </children>
@@ -348,7 +349,7 @@
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
                                 <TextField alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
                                 <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" text="Go To Report" />
-                                <Button layoutX="1116.0" layoutY="60.0" mnemonicParsing="false" text="Open Reports" />
+                                <!-- Open Reports moved to top; removed per design -->
                                 <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="HUD Reports Loaded:" />
                                 <TextField editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
                                 <Text layoutX="484.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTE: This is a static placeholder/copy of FMR Reports tab. Functionality &amp; integration of all 3 report tabs into 1 TBD for Final Project Part II" wrappingWidth="466.380859375">
@@ -442,7 +443,7 @@
                                         </GridPane>
                                     </children>
                                 </VBox>
-                                <Button layoutX="1116.0" layoutY="60.0" mnemonicParsing="false" onAction="#OpenReportPHA" text="Open Reports" />
+                                <!-- Open Reports moved to top; removed per design -->
                                 <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="PHA Reports Loaded:" />
                                 <TextField fx:id="TotalReportsPHA" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
                                 <VBox layoutX="440.0" layoutY="60.0" prefHeight="266.0" prefWidth="299.0">
@@ -529,6 +530,6 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="897.0" layoutY="13.0" mnemonicParsing="false" onAction="#TestLoad" text="Test Load" />
+        <Button layoutX="937.0" layoutY="13.0" mnemonicParsing="false" onAction="#TestLoad" text="Test Load" />
     </children>
 </AnchorPane>
