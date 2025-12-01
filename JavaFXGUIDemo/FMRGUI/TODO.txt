@@ -1,0 +1,5 @@
+FMR REPORTS TODO
+	change fmr reports to use a list view instead of text boxes
+	change fmr filters to use a dropdown box instead of text selection
+	add totals for fmr data set (ex total number of metro areas)
+	

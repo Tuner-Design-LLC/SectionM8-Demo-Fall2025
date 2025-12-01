@@ -276,8 +276,11 @@ public class ReportGUI {
         return FMRreports.get(currentReportFMR).getMedianHouseholdIncome();
     }
 
+    public ArrayList<FMRReport> getFMRReportList(){
+        return FMRreports;
+    }
+
     //get methods for PHA reports
-  
 
     public String getCurrentPHAReportState(){
         return PHAreports.get(currentReportPHA).getStateName();

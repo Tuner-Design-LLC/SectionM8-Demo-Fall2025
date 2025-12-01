@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -187,6 +188,7 @@
                                 <!-- Open Reports moved to top; removed per design -->
                                 <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="FMR Reports Loaded:" />
                                 <TextField fx:id="TotalReportsFMR" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
+                        <ListView fx:id="FMRList" layoutX="811.0" layoutY="214.0" prefHeight="221.0" prefWidth="405.0" />
                             </children>
                         </AnchorPane>
                     </content>

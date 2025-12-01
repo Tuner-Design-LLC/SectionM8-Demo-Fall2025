@@ -1,11 +1,14 @@
 package crawlers.reportgui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.scene.control.ListView;
 
 import java.io.File;
 import org.xml.sax.SAXException;
@@ -16,6 +19,9 @@ import java.io.IOException;
 public class ReportGUIController {
     //BASE GUI USED FOR ALL REPORTS
     private ReportGUI GUI1 = new ReportGUI();
+
+    @FXML
+    private ListView<FMRReport> FMRList;
 
     @FXML
     private TextField AddressPHA;
@@ -421,6 +427,10 @@ public class ReportGUIController {
             BedroomAverage.setText("");
         else
             BedroomAverage.setText(String.format("%.0f", avgBedrooms));
+
+
+        ObservableList<FMRReport> reports = FXCollections.observableArrayList(GUI1.getFMRReportList());
+        FMRList.setItems(reports);
     }
 
     //update all PHA text fields
@@ -477,4 +487,10 @@ public class ReportGUIController {
 
     }
 
+    @FXML
+    void initialize() {
+        ListView<FMRReport> FMRList = new ListView<FMRReport>();
+        ObservableList<FMRReport> reports = FXCollections.observableArrayList(GUI1.getFMRReportList());
+        FMRList.setItems(reports);
+    }
 }
