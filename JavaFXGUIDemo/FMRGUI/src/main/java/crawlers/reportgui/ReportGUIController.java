@@ -91,6 +91,9 @@ public class ReportGUIController {
     private TextField ManualEnterReportPHA;
 
     @FXML
+    private TextField ManualEnterReportHUD;
+
+    @FXML
     private TextField MarketType;
 
     @FXML
@@ -598,6 +601,16 @@ public class ReportGUIController {
         if (tempReportID > 0 && tempReportID < GUI1.getNumOfReportsPHA()+1){
             GUI1.setCurrentReportPHA(tempReportID-1);
             updateReportGUIPHA();
+        }
+    }
+
+    @FXML //get the ID that the user manually entered and go to it (HUD)
+    void GetManualReportHUD(ActionEvent event) {
+        int tempReportID = Integer.parseInt(this.ManualEnterReportHUD.getText());
+
+        if (tempReportID > 0 && tempReportID < GUI1.getNumOfReportsHUD()+1){
+            GUI1.setCurrentReportHUD(tempReportID-1);
+            updateReportGUIHUD();
         }
     }
 

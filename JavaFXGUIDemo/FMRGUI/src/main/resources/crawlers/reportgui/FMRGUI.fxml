@@ -353,8 +353,8 @@
                                 <Button layoutX="347.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" text="Increase" />
                                 <Button layoutX="169.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" text="Decrease" />
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
-                                <TextField alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
-                                <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" text="Go To Report" />
+                                <TextField fx:id="ManualEnterReportHUD" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
+                                <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportHUD" text="Go To Report" />
                                 <!-- Open Reports moved to top; removed per design -->
                                 <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="HUD Reports Loaded:" />
                                 <TextField fx:id="TotalReportsHUD" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
