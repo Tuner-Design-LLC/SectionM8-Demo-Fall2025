@@ -40,6 +40,20 @@ public class ReportGUI {
         return HUDreports.size();
     }
 
+    // Returns true if at least one parsed HUD report contains expected HUD fields
+    public boolean hasValidHUDReports(){
+        for (HUDReport r : HUDreports){
+            if (r == null) continue;
+            String pid = r.getPropertyId();
+            String addr = r.getPropertyAddress();
+            String ami = r.getAmiMedianFamilyIncome();
+            if ((pid != null && !pid.trim().isEmpty()) || (addr != null && !addr.trim().isEmpty()) || (ami != null && !ami.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getCurrentReportHUD(){
         return currentReportHUD;
     }
@@ -173,8 +187,35 @@ public class ReportGUI {
         return FMRreports.size();
     }
 
+    // Returns true if at least one parsed FMR report contains expected FMR fields
+    public boolean hasValidFMRReports(){
+        for (FMRReport r : FMRreports){
+            if (r == null) continue;
+            String fmr = r.getFairMarketRent();
+            String fy = r.getFiscalYear();
+            if ((fmr != null && !fmr.trim().isEmpty()) || (fy != null && !fy.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getNumOfReportsPHA(){
         return PHAreports.size();
+    }
+
+    // Returns true if at least one parsed PHA report contains expected PHA fields
+    public boolean hasValidPHAReports(){
+        for (PHAReport r : PHAreports){
+            if (r == null) continue;
+            String code = r.getPhaCode();
+            String city = r.getCity();
+            String addr = r.getAddress();
+            if ((code != null && !code.trim().isEmpty()) || (city != null && !city.trim().isEmpty()) || (addr != null && !addr.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getCurrentReportFMR(){
@@ -291,6 +332,12 @@ public class ReportGUI {
         FMRReportsFiltered = new ArrayList<>();
     }
 
+    //remove all FMR reports
+    public void resetFMRReportList(){
+        FMRreports = new ArrayList<>();
+        currentReportFMR = 0;
+    }
+
     //get all num of filtered reports FMR
     public int getNumOfFilteredReportsFMR(){
         return FMRReportsFiltered.size();
@@ -299,6 +346,12 @@ public class ReportGUI {
     //toggle the filter on / off FMR
     public void toggleFilterFMR(){
         filterEnabledFMR = !filterEnabledFMR;
+    }
+
+    //remove all PHA reports
+    public void resetPHAReportList(){
+        PHAreports = new ArrayList<>();
+        currentReportPHA = 0;
     }
 
     //get methods for FMR reports
@@ -431,6 +484,119 @@ public class ReportGUI {
         }catch(NumberFormatException ex){
             return "";
         }
+    }
+
+    // --- Non-destructive parsers: parse file into temp lists without mutating main lists ---
+    public ArrayList<FMRReport> parseReportsFMR() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        ReportHandlerFMR handler = new ReportHandlerFMR();
+        parser.parse(new File(filePath), handler);
+        return new ArrayList<>(handler.getReports());
+    }
+
+    public ArrayList<PHAReport> parseReportsPHA() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        ReportHandlerPHA handler = new ReportHandlerPHA();
+        parser.parse(new File(filePath), handler);
+        return new ArrayList<>(handler.getReports());
+    }
+
+    public ArrayList<HUDReport> parseReportsHUD() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        ReportHandlerHUD handler = new ReportHandlerHUD();
+        parser.parse(new File(filePath), handler);
+        return new ArrayList<>(handler.getReports());
+    }
+
+    // --- Merge helpers: add parsed reports into main lists with de-duplication ---
+    public void addFMRReports(ArrayList<FMRReport> tempReports){
+        for (FMRReport report: tempReports){
+            boolean flag = true;
+            for(FMRReport baseReport: FMRreports){
+                if (report.getReportID() != null && baseReport.getReportID() != null &&
+                        Integer.parseInt(report.getReportID()) == Integer.parseInt(baseReport.getReportID())) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                FMRreports.add(report);
+        }
+    }
+
+    public void addPHAReports(ArrayList<PHAReport> tempReports){
+        for (PHAReport report: tempReports){
+            boolean flag = true;
+            for(PHAReport baseReport: PHAreports){
+                if (report.getReportID() != null && baseReport.getReportID() != null &&
+                        Integer.parseInt(report.getReportID()) == Integer.parseInt(baseReport.getReportID())) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                PHAreports.add(report);
+        }
+    }
+
+    public void addHUDReports(ArrayList<HUDReport> tempReports){
+        for (HUDReport report: tempReports){
+            boolean flag = true;
+            for(HUDReport baseReport: HUDreports){
+                if (report.getReportID() != null && baseReport.getReportID() != null &&
+                        Integer.parseInt(report.getReportID()) == Integer.parseInt(baseReport.getReportID())) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                HUDreports.add(report);
+        }
+    }
+
+    // --- List validators for temporary parsed lists ---
+    public boolean listHasValidFMRReports(ArrayList<FMRReport> list){
+        if (list == null) return false;
+        for (FMRReport r : list){
+            if (r == null) continue;
+            String fmr = r.getFairMarketRent();
+            String fy = r.getFiscalYear();
+            if ((fmr != null && !fmr.trim().isEmpty()) || (fy != null && !fy.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean listHasValidPHAReports(ArrayList<PHAReport> list){
+        if (list == null) return false;
+        for (PHAReport r : list){
+            if (r == null) continue;
+            String code = r.getPhaCode();
+            String city = r.getCity();
+            String addr = r.getAddress();
+            if ((code != null && !code.trim().isEmpty()) || (city != null && !city.trim().isEmpty()) || (addr != null && !addr.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean listHasValidHUDReports(ArrayList<HUDReport> list){
+        if (list == null) return false;
+        for (HUDReport r : list){
+            if (r == null) continue;
+            String pid = r.getPropertyId();
+            String addr = r.getPropertyAddress();
+            String ami = r.getAmiMedianFamilyIncome();
+            if ((pid != null && !pid.trim().isEmpty()) || (addr != null && !addr.trim().isEmpty()) || (ami != null && !ami.trim().isEmpty())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import org.xml.sax.SAXException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -185,15 +186,19 @@ public class ReportGUIController {
 
         GUI1.setFilePath(path);
         try {
-            GUI1.resetHUDReportList();
-            GUI1.openXMLReportHUD();
+            ArrayList<HUDReport> tmp = GUI1.parseReportsHUD();
+            if (tmp == null || tmp.size() == 0 || !GUI1.listHasValidHUDReports(tmp)){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Open Report");
+                a.setHeaderText("Wrong report type");
+                a.setContentText("The selected file is not a HUD report. Please select the correct report type.");
+                a.showAndWait();
+                return;
+            }
+
+            GUI1.addHUDReports(tmp);
+
             updateReportGUIHUD();
-        } catch (IndexOutOfBoundsException ex) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Open Report");
-            a.setHeaderText("Wrong report type");
-            a.setContentText("The selected file is not a HUD report. Please select the correct report type.");
-            a.showAndWait();
         } catch (org.xml.sax.SAXException | javax.xml.parsers.ParserConfigurationException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Open Report");
@@ -205,6 +210,12 @@ public class ReportGUIController {
             a.setTitle("Open Report");
             a.setHeaderText("I/O error");
             a.setContentText(ex.getMessage());
+            a.showAndWait();
+        } catch (IndexOutOfBoundsException ex) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Open Report");
+            a.setHeaderText("Wrong report type");
+            a.setContentText("The selected file is not a HUD report. Please select the correct report type.");
             a.showAndWait();
         } catch (Exception ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -373,14 +384,22 @@ public class ReportGUIController {
     void TestLoad(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
         // Use project-level 'Test Reports' directory relative to working directory
         GUI1.setFilePath(System.getProperty("user.dir") + "\\Test Reports\\TestFMRReport.xml");
-        GUI1.openXMLReportFMR();
+        ArrayList<FMRReport> tmpFMR = GUI1.parseReportsFMR();
+        if (tmpFMR != null && tmpFMR.size() > 0 && GUI1.listHasValidFMRReports(tmpFMR)) {
+            GUI1.addFMRReports(tmpFMR);
+        }
 
         GUI1.setFilePath(System.getProperty("user.dir") + "\\Test Reports\\TestPHAReport.xml");
-        GUI1.openXMLReportPHA();
+        ArrayList<PHAReport> tmpPHA = GUI1.parseReportsPHA();
+        if (tmpPHA != null && tmpPHA.size() > 0 && GUI1.listHasValidPHAReports(tmpPHA)) {
+            GUI1.addPHAReports(tmpPHA);
+        }
 
         GUI1.setFilePath(System.getProperty("user.dir") + "\\Test Reports\\TestHUDReport.xml");
-        GUI1.openXMLReportHUD();
-
+        ArrayList<HUDReport> tmpHUD = GUI1.parseReportsHUD();
+        if (tmpHUD != null && tmpHUD.size() > 0 && GUI1.listHasValidHUDReports(tmpHUD)) {
+            GUI1.addHUDReports(tmpHUD);
+        }
 
         updateReportGUIFMR();
         updateReportGUIPHA();
@@ -411,7 +430,16 @@ public class ReportGUIController {
 
         GUI1.setFilePath(path);
         try {
-            GUI1.openXMLReportFMR();
+            ArrayList<FMRReport> tmp = GUI1.parseReportsFMR();
+            if (tmp == null || tmp.size() == 0 || !GUI1.listHasValidFMRReports(tmp)){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Open Report");
+                a.setHeaderText("Wrong report type");
+                a.setContentText("The selected file is not an FMR report. Please select the correct report type.");
+                a.showAndWait();
+                return;
+            }
+            GUI1.addFMRReports(tmp);
             updateReportGUIFMR();
         } catch (IndexOutOfBoundsException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -464,7 +492,18 @@ public class ReportGUIController {
 
         GUI1.setFilePath(path);
         try {
-            GUI1.openXMLReportPHA();
+            ArrayList<PHAReport> tmp = GUI1.parseReportsPHA();
+            if (tmp == null || tmp.size() == 0 || !GUI1.listHasValidPHAReports(tmp)){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Open Report");
+                a.setHeaderText("Wrong report type");
+                a.setContentText("The selected file is not a PHA report. Please select the correct report type.");
+                a.showAndWait();
+                return;
+            }
+
+            GUI1.addPHAReports(tmp);
+
             updateReportGUIPHA();
         } catch (IndexOutOfBoundsException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
