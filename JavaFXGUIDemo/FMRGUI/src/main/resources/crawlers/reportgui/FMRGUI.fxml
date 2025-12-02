@@ -167,7 +167,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="FilterState" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Button fx:id="stateFilterButtonFMR" onAction="#showFilterMenuFMR" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
                                                 <TextField fx:id="TotalFilteredReports" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                             </children>
@@ -519,7 +519,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="FilterStatePHA" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button fx:id="stateFilterButtonPHA" onAction="#showFilterMenuPHA" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
                                     <TextField fx:id="TotalFilteredReportsPHA" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>

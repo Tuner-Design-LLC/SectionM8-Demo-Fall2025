@@ -60,10 +60,16 @@ public class ReportGUIController {
     private TextField FaxPHA;
 
     @FXML
-    private TextField FilterState;
+    private Button stateFilterButtonFMR;
 
     @FXML
-    private TextField FilterStatePHA;
+    private Button stateFilterButtonPHA;
+
+    private ContextMenu filterContextMenuFMR;
+    private ContextMenu filterContextMenuPHA;
+
+    private String filterStateValueFMR = "";
+    private String filterStateValuePHA = "";
 
     @FXML
     private TextField FiscalYear;
@@ -190,21 +196,66 @@ public class ReportGUIController {
     private Button stateSelectionButtonHUD;
 
     private ContextMenu hudContextMenu;
+    private String hudSelectedStateAbbrev = "";
 
     @FXML
     public void initialize() {
-        if (stateSelectionButtonHUD != null) {
-            ObservableList<String> states = FXCollections.observableArrayList("PA", "MD", "DE", "NJ", "NY");
+        // Use full state names for display but keep abbreviations for filtering
+        String[][] states = new String[][]{
+                {"Pennsylvania", "PA"},
+                {"Maryland", "MD"},
+                {"Delaware", "DE"},
+                {"New Jersey", "NJ"},
+                {"New York", "NY"}
+        };
 
+        // HUD main selection menu
+        if (stateSelectionButtonHUD != null) {
             hudContextMenu = new ContextMenu();
-            for (String s : states) {
-                MenuItem mi = new MenuItem(s);
+            for (String[] pair : states) {
+                String full = pair[0];
+                String abbr = pair[1];
+                MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
                     if (stateSelectionButtonHUD != null) {
-                        stateSelectionButtonHUD.setText(s);
+                        stateSelectionButtonHUD.setText(full);
+                        hudSelectedStateAbbrev = abbr;
                     }
                 });
                 hudContextMenu.getItems().add(mi);
+            }
+        }
+
+        // FMR filter menu
+        if (stateFilterButtonFMR != null) {
+            filterContextMenuFMR = new ContextMenu();
+            for (String[] pair : states) {
+                String full = pair[0];
+                String abbr = pair[1];
+                MenuItem mi = new MenuItem(full);
+                mi.setOnAction(ae -> {
+                    // store full state name to match ReportGUI.filterReportsByStateFMR which
+                    // compares against report.getStateName()
+                    filterStateValueFMR = full;
+                    stateFilterButtonFMR.setText(full);
+                });
+                filterContextMenuFMR.getItems().add(mi);
+            }
+        }
+
+        // PHA filter menu
+        if (stateFilterButtonPHA != null) {
+            filterContextMenuPHA = new ContextMenu();
+            for (String[] pair : states) {
+                String full = pair[0];
+                String abbr = pair[1];
+                MenuItem mi = new MenuItem(full);
+                mi.setOnAction(ae -> {
+                    // store full state name to match ReportGUI.filterReportsByStatePHA
+                    filterStateValuePHA = full;
+                    stateFilterButtonPHA.setText(full);
+                });
+                filterContextMenuPHA.getItems().add(mi);
             }
         }
     }
@@ -217,6 +268,20 @@ public class ReportGUIController {
         } else {
             hudContextMenu.show(stateSelectionButtonHUD, Side.BOTTOM, 0, 0);
         }
+    }
+
+    @FXML
+    void showFilterMenuFMR(ActionEvent event) {
+        if (filterContextMenuFMR == null || stateFilterButtonFMR == null) return;
+        if (filterContextMenuFMR.isShowing()) filterContextMenuFMR.hide();
+        else filterContextMenuFMR.show(stateFilterButtonFMR, Side.BOTTOM, 0, 0);
+    }
+
+    @FXML
+    void showFilterMenuPHA(ActionEvent event) {
+        if (filterContextMenuPHA == null || stateFilterButtonPHA == null) return;
+        if (filterContextMenuPHA.isShowing()) filterContextMenuPHA.hide();
+        else filterContextMenuPHA.show(stateFilterButtonPHA, Side.BOTTOM, 0, 0);
     }
 
 
@@ -403,7 +468,8 @@ public class ReportGUIController {
     @FXML //apply the filters and update the GUI
     void FilterButtonFMR(ActionEvent event) {
         GUI1.resetFilterReportListFMR();
-        GUI1.filterReportsByStateFMR(this.FilterState.getText());
+        String state = (filterStateValueFMR == null) ? "" : filterStateValueFMR;
+        GUI1.filterReportsByStateFMR(state);
         TotalFilteredReports.setText(String.format("%d",GUI1.getNumOfFilteredReportsFMR()));
         updateReportGUIFMR();
     }
@@ -411,7 +477,8 @@ public class ReportGUIController {
     @FXML //apply the PHA filters and update the GUI
     void FilterButtonPHA(ActionEvent event) {
         GUI1.resetFilterReportListPHA();
-        GUI1.filterReportsByStatePHA(this.FilterStatePHA.getText());
+        String state = (filterStateValuePHA == null) ? "" : filterStateValuePHA;
+        GUI1.filterReportsByStatePHA(state);
         TotalFilteredReportsPHA.setText(String.format("%d", GUI1.getNumOfFilteredReportsPHA()));
         updateReportGUIPHA();
     }
