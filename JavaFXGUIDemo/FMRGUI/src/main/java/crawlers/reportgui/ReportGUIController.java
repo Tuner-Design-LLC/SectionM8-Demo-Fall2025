@@ -185,6 +185,7 @@ public class ReportGUIController {
 
         GUI1.setFilePath(path);
         try {
+            GUI1.resetHUDReportList();
             GUI1.openXMLReportHUD();
             updateReportGUIHUD();
         } catch (IndexOutOfBoundsException ex) {
@@ -681,8 +682,14 @@ public class ReportGUIController {
             propertyIDHUD.setText(String.format(GUI1.getCurrentHUDReportPropertyID()));
         if (fiscalYearHUD != null)
             fiscalYearHUD.setText(String.format(GUI1.getCurrentHUDReportFiscalYear()));
-        if (AMIByCountyHUD != null)
-            AMIByCountyHUD.setText(String.format(GUI1.getCurrentHUDReportAMIByCounty()));
+        if (AMIByCountyHUD != null) {
+            String ami = GUI1.getCurrentHUDReportAMIByCounty();
+            if (ami == null || ami.trim().isEmpty()) {
+                AMIByCountyHUD.setText("");
+            } else {
+                AMIByCountyHUD.setText(String.format("$%s", ami));
+            }
+        }
         if (ownerHUD != null)
             ownerHUD.setText(String.format(GUI1.getCurrentHUDReportOwner()));
         if (availableUnitsHUD != null)

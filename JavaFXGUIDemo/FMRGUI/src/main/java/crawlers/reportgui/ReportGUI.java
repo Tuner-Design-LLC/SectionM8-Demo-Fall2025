@@ -60,6 +60,12 @@ public class ReportGUI {
         }
     }
 
+    //remove all HUD reports
+    public void resetHUDReportList(){
+        HUDreports = new ArrayList<>();
+        currentReportHUD = 0;
+    }
+
     //create a filtered list of reports by state PHA
     public void filterReportsByStatePHA(String stateKey){
         for(PHAReport report: PHAreports){
@@ -160,7 +166,7 @@ public class ReportGUI {
 
     //methods for dealing with the current number of reports and the selected report
     public int getTotalNumOfReports(){
-        return FMRreports.size()+PHAreports.size();
+        return FMRreports.size()+PHAreports.size()+HUDreports.size();
     }
 
     public int getNumOfReportsFMR(){
