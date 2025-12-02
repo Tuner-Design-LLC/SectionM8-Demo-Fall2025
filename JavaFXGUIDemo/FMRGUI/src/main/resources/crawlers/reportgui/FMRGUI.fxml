@@ -178,8 +178,12 @@
                                 <CheckBox contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersFMR" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
                                 <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
                                 <TextField fx:id="CurrentReport" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="347.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" text="Increase" />
-                                <Button layoutX="169.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportFMR" text="Decrease" />
+                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" text="+">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                                          <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                          <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
                                 <TextField fx:id="ManualEnterReport" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
                                 <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportFMR" text="Go To Report" />
@@ -350,8 +354,10 @@
                                 <CheckBox contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
                                 <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
                                 <TextField fx:id="CurrentReportHUD" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="347.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" text="Increase" />
-                                <Button layoutX="169.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" text="Decrease" />
+                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" text="+" />
+                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" text="-" />
+                                    <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                    <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
                                 <TextField fx:id="ManualEnterReportHUD" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
                                 <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportHUD" text="Go To Report" />
@@ -369,8 +375,10 @@
                             <children>
                                 <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
                                 <TextField fx:id="CurrentReportPHA" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="347.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" text="Increase" />
-                                <Button layoutX="169.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" text="Decrease" />
+                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" text="+" />
+                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" text="-" />
+                                    <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                    <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
                                 <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
                                 <TextField fx:id="ManualEnterReportPHA" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
                                 <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportPHA" text="Go To Report" />
