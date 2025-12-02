@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -342,7 +341,7 @@
                                                 </Label>
                                                 <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
                                                 <TextField editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <ChoiceBox fx:id="stateSelectionBoxHUD" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button fx:id="stateSelectionButtonHUD" onAction="#showHUDContextMenu" prefWidth="150.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                             </children>
                                         </GridPane>
                                     </children>

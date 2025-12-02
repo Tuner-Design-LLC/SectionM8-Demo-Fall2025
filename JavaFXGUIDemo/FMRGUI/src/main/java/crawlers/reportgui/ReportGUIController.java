@@ -5,6 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.geometry.Side;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -179,6 +185,39 @@ public class ReportGUIController {
 
     @FXML
     private TextField ZipCodePHA;
+
+    @FXML
+    private Button stateSelectionButtonHUD;
+
+    private ContextMenu hudContextMenu;
+
+    @FXML
+    public void initialize() {
+        if (stateSelectionButtonHUD != null) {
+            ObservableList<String> states = FXCollections.observableArrayList("PA", "MD", "DE", "NJ", "NY");
+
+            hudContextMenu = new ContextMenu();
+            for (String s : states) {
+                MenuItem mi = new MenuItem(s);
+                mi.setOnAction(ae -> {
+                    if (stateSelectionButtonHUD != null) {
+                        stateSelectionButtonHUD.setText(s);
+                    }
+                });
+                hudContextMenu.getItems().add(mi);
+            }
+        }
+    }
+
+    @FXML
+    void showHUDContextMenu(ActionEvent event) {
+        if (hudContextMenu == null || stateSelectionButtonHUD == null) return;
+        if (hudContextMenu.isShowing()) {
+            hudContextMenu.hide();
+        } else {
+            hudContextMenu.show(stateSelectionButtonHUD, Side.BOTTOM, 0, 0);
+        }
+    }
 
 
     @FXML //A testing load method that loads reports without having to input the file path by hand
