@@ -458,6 +458,27 @@ public class ReportGUI {
         return PHAreports.get(currentReportPHA).getEmail();
     }
 
+    public String getCurrentPHANumberUnits() {
+        return PHAreports.get(currentReportPHA).getNumHcvUnits();
+    }
+
+    public String getCurrentPHAOccupancyRate() {
+        return PHAreports.get(currentReportPHA).getOccupancyRate();
+    }
+
+    public String getCurrentPHAHCVUtilRate() {
+        return PHAreports.get(currentReportPHA).getHcvUtilRate();
+    }
+
+    public String getCurrentPHAInspectionComplianceRate() {
+        return PHAreports.get(currentReportPHA).getInspectionComplianceRate();
+
+    }
+
+    public String getCurrentPHAAvgTenantIncome() {
+        return PHAreports.get(currentReportPHA).getAvgTenantIncome();
+    }
+
     //get methods for HUD reports (basic selection getters)
     public String getCurrentHUDReportPropertyAddress(){
         return HUDreports.get(currentReportHUD).getPropertyAddress();

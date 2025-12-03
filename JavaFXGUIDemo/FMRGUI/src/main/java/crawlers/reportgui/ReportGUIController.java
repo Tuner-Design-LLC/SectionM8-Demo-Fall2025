@@ -744,6 +744,16 @@ public class ReportGUIController {
         FaxPHA.setText(fax == null ? "" : fax);
         String email = GUI1.getCurrentPHAReportEmail();
         EmailPHA.setText(email == null ? "" : email);
+        String numUnitsPHA = GUI1.getCurrentPHANumberUnits();
+        HCVUnitsPHA.setText(numUnitsPHA == null ? "" : numUnitsPHA);
+        String occupRatePHA = GUI1.getCurrentPHAOccupancyRate();
+        OccupancyRatePHA.setText(occupRatePHA == null ? "" : occupRatePHA);
+        String HCVUtilPHA = GUI1.getCurrentPHAHCVUtilRate();
+        HCVUtilRatePHA.setText(HCVUtilPHA == null ? "" : HCVUtilPHA);
+        String compPHA = GUI1.getCurrentPHAInspectionComplianceRate();
+        InspectCompPHA.setText(compPHA == null ? "" : compPHA);
+        String tenIncomePHA = GUI1.getCurrentPHAAvgTenantIncome();
+        TenantIncomePHA.setText(tenIncomePHA == null ? "" : tenIncomePHA);
         // ... existing PHA field updates ...
     
     double avgHcvUtil = GUI1.getAverageHcvUtilRatePHA();
@@ -835,6 +845,11 @@ public class ReportGUIController {
         PhonePHA.setText("");
         FaxPHA.setText("");
         EmailPHA.setText("");
+        HCVUnitsPHA.setText("");
+        OccupancyRatePHA.setText("");
+        HCVUtilRatePHA.setText("");
+        InspectCompPHA.setText("");
+        TenantIncomePHA.setText("");
 
         // Clear HUD fields
         if (CurrentReportHUD != null) CurrentReportHUD.setText("");

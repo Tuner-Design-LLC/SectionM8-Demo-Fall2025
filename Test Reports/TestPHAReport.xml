@@ -67,7 +67,7 @@
     <num_total_assisted>2914</num_total_assisted>
     <waiting_list_status></waiting_list_status>
     <occupancy_rate></occupancy_rate>
-    <hcv_util_rate></hcv_util_rate>
+    <hcv_util_rate>0.11</hcv_util_rate>
     <latitude>40.2619</latitude>
     <longitude>-76.8811</longitude>
     <msa_code>25420</msa_code>
