@@ -702,6 +702,7 @@ public class ReportGUI {
     }
 
     public void addHUDReports(ArrayList<HUDReport> tempReports){
+        boolean wasEmpty = HUDreports.isEmpty();
         for (HUDReport report: tempReports){
             boolean flag = true;
             for(HUDReport baseReport: HUDreports){
@@ -713,6 +714,12 @@ public class ReportGUI {
             }
             if(flag)
                 HUDreports.add(report);
+        }
+
+        // If the list was previously empty and we just added reports, ensure the
+        // current HUD report index points to the first report so the UI shows it.
+        if (wasEmpty && !HUDreports.isEmpty()) {
+            currentReportHUD = 0;
         }
     }
 
