@@ -9,8 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.geometry.Side;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+// unused imports removed
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -200,6 +199,9 @@ public class ReportGUIController {
             }
 
             GUI1.addHUDReports(tmp);
+            // ensure the HUD selection is set to first report so view populates
+            if (GUI1.getNumOfReportsHUD() > 0) GUI1.setCurrentReportHUD(0);
+            System.out.println("[DEBUG] OpenReportHUD: added tmp=" + (tmp == null ? 0 : tmp.size()) + " totalHUD=" + GUI1.getNumOfReportsHUD());
 
             updateReportGUIHUD();
         } catch (org.xml.sax.SAXException | javax.xml.parsers.ParserConfigurationException ex) {
@@ -341,7 +343,7 @@ public class ReportGUIController {
             hudContextMenu = new ContextMenu();
             for (String[] pair : states) {
                 String full = pair[0];
-                String abbr = pair[1];
+                final String abbr = pair[1];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
                     if (stateSelectionButtonHUD != null) {
@@ -358,7 +360,6 @@ public class ReportGUIController {
             filterContextMenuFMR = new ContextMenu();
             for (String[] pair : states) {
                 String full = pair[0];
-                String abbr = pair[1];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
                     // store full state name to match ReportGUI.filterReportsByStateFMR which
@@ -375,7 +376,6 @@ public class ReportGUIController {
             filterContextMenuPHA = new ContextMenu();
             for (String[] pair : states) {
                 String full = pair[0];
-                String abbr = pair[1];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
                     // store full state name to match ReportGUI.filterReportsByStatePHA
@@ -428,10 +428,12 @@ public class ReportGUIController {
             GUI1.addPHAReports(tmpPHA);
         }
 
-        GUI1.setFilePath(System.getProperty("user.dir") + "\\Test Reports\\TestHUDReport.xml");
-        ArrayList<HUDReport> tmpHUD = GUI1.parseReportsHUD();
-        if (tmpHUD != null && tmpHUD.size() > 0 && GUI1.listHasValidHUDReports(tmpHUD)) {
-            GUI1.addHUDReports(tmpHUD);
+        String testHudPath = System.getProperty("user.dir") + "\\Test Reports\\TestHUDReport.xml";
+        try {
+            loadAndSelectFirstHUD(testHudPath);
+            System.out.println("[DEBUG] TestLoad: helper loaded totalHUD=" + GUI1.getNumOfReportsHUD());
+        } catch (Exception e) {
+            System.out.println("[DEBUG] TestLoad: failed to load HUD test file: " + e.getMessage());
         }
 
         updateReportGUIFMR();
@@ -502,6 +504,18 @@ public class ReportGUIController {
     }
 
     @FXML //opens the selected report path and update GUI
+
+    // Helper: load HUD reports from given path, add them, select the first report and update GUI
+    private void loadAndSelectFirstHUD(String path) throws org.xml.sax.SAXException, javax.xml.parsers.ParserConfigurationException, IOException {
+        GUI1.setFilePath(path);
+        ArrayList<HUDReport> tmp = GUI1.parseReportsHUD();
+        if (tmp == null || tmp.size() == 0 || !GUI1.listHasValidHUDReports(tmp)){
+            throw new IndexOutOfBoundsException("Not a HUD report or no HUD reports found");
+        }
+        GUI1.addHUDReports(tmp);
+        if (GUI1.getNumOfReportsHUD() > 0) GUI1.setCurrentReportHUD(0);
+        updateReportGUIHUD();
+    }
     void OpenReportPHA(ActionEvent event) {
         String path = (this.ReportPath == null) ? null : this.ReportPath.getText();
         if (path == null || path.trim().isEmpty()) {
@@ -754,7 +768,6 @@ public class ReportGUIController {
         InspectCompPHA.setText(compPHA == null ? "" : compPHA);
         String tenIncomePHA = GUI1.getCurrentPHAAvgTenantIncome();
         TenantIncomePHA.setText(tenIncomePHA == null ? "" : tenIncomePHA);
-        String medtenIncomePHA = GUI1.getCurrentPHAAvgTenantIncome();
         TenantIncomePHA.setText(tenIncomePHA == null ? "" : tenIncomePHA);
         // ... existing PHA field updates ...
 
