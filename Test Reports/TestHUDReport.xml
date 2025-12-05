@@ -10,7 +10,7 @@
     <hud_geoid></hud_geoid>
     <msa_code>37980</msa_code>
     <area_type>Metropolitan</area_type>
-    <ami_median_family_income>85000</ami_median_family_income>
+    <ami_median_family_income>101000</ami_median_family_income>
     <ami_30_percent_limit>24000</ami_30_percent_limit>
     <ami_50_percent_limit>45000</ami_50_percent_limit>
     <ami_80_percent_limit>67000</ami_80_percent_limit>
@@ -38,10 +38,292 @@
     <census_tract>42027012000</census_tract>
     <cbsa_code>37964</cbsa_code>
     <hud_region_name>Mid-Atlantic Region</hud_region_name>
-    <rural_indicator>false</rural_indicator>
+    <rural_indicator>False</rural_indicator>
     <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
     <scrape_date>2025-10-29</scrape_date>
     <dataset_last_updated>2025-10-15 00:00:00</dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="1">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2023</fiscal_year>
+    <state_name>Pennsylvania</state_name>
+    <state_code>PA</state_code>
+    <county_name>Chester County</county_name>
+    <fips_code>42029</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>95000</ami_median_family_income>
+    <ami_30_percent_limit>30000</ami_30_percent_limit>
+    <ami_50_percent_limit>50000</ami_50_percent_limit>
+    <ami_80_percent_limit>80000</ami_80_percent_limit>
+    <household_size>4 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>134</total_units>
+    <occupied_units>131</occupied_units>
+    <vacancy_rate>0.022</vacancy_rate>
+    <assisted_units>112</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Chester Test Property</property_name>
+    <property_address>123 Main St, West Chester, PA 19380</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>1998</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>19320</zip_code>
+    <hud_inspection_score>93</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2024-02-24 00:00:00</affordability_end_date>
+    <latitude>40</latitude>
+    <longitude>-75.6</longitude>
+    <census_tract>735649</census_tract>
+    <cbsa_code>37980</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>False</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="2">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2024</fiscal_year>
+    <state_name>Pennsylvania</state_name>
+    <state_code>PA</state_code>
+    <county_name>Delaware County</county_name>
+    <fips_code>42045</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>78000</ami_median_family_income>
+    <ami_30_percent_limit>31000</ami_30_percent_limit>
+    <ami_50_percent_limit>51000</ami_50_percent_limit>
+    <ami_80_percent_limit>81000</ami_80_percent_limit>
+    <household_size>5 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>89</total_units>
+    <occupied_units>80</occupied_units>
+    <vacancy_rate>0.101</vacancy_rate>
+    <assisted_units>58</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Delco Test Property</property_name>
+    <property_address>55 Market St, Media, PA 19063</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>2017</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>19082</zip_code>
+    <hud_inspection_score>98</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2024-05-25 00:00:00</affordability_end_date>
+    <latitude>39.92</latitude>
+    <longitude>-75.39</longitude>
+    <census_tract>696820</census_tract>
+    <cbsa_code>37964</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>True</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="3">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2025</fiscal_year>
+    <state_name>Pennsylvania</state_name>
+    <state_code>PA</state_code>
+    <county_name>Bucks County</county_name>
+    <fips_code>42017</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>89000</ami_median_family_income>
+    <ami_30_percent_limit>32000</ami_30_percent_limit>
+    <ami_50_percent_limit>52000</ami_50_percent_limit>
+    <ami_80_percent_limit>82000</ami_80_percent_limit>
+    <household_size>3 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>133</total_units>
+    <occupied_units>130</occupied_units>
+    <vacancy_rate>0.023</vacancy_rate>
+    <assisted_units>41</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Bucks Test Property</property_name>
+    <property_address>400 Maple Ave, Doylestown, PA 18901</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>1957</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>18901</zip_code>
+    <hud_inspection_score>94</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2023-04-02 00:00:00</affordability_end_date>
+    <latitude>40.31</latitude>
+    <longitude>-75.13</longitude>
+    <census_tract>107158</census_tract>
+    <cbsa_code>15804</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>False</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="4">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2025</fiscal_year>
+    <state_name>Pennsylvania</state_name>
+    <state_code>PA</state_code>
+    <county_name>Philadelphia County</county_name>
+    <fips_code>42101</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>63000</ami_median_family_income>
+    <ami_30_percent_limit>33000</ami_30_percent_limit>
+    <ami_50_percent_limit>53000</ami_50_percent_limit>
+    <ami_80_percent_limit>83000</ami_80_percent_limit>
+    <household_size>6 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>102</total_units>
+    <occupied_units>99</occupied_units>
+    <vacancy_rate>0.029</vacancy_rate>
+    <assisted_units>72</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Philly Test Property</property_name>
+    <property_address>800 Broad St, Philadelphia, PA 19146</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>1975</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>19103</zip_code>
+    <hud_inspection_score>88</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2023-08-29 00:00:00</affordability_end_date>
+    <latitude>39.94</latitude>
+    <longitude>-75.16</longitude>
+    <census_tract>992335</census_tract>
+    <cbsa_code>37964</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>False</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="5">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2023</fiscal_year>
+    <state_name>New Jersey</state_name>
+    <state_code>NJ</state_code>
+    <county_name>Camden County</county_name>
+    <fips_code>34007</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>53000</ami_median_family_income>
+    <ami_30_percent_limit>34000</ami_30_percent_limit>
+    <ami_50_percent_limit>54000</ami_50_percent_limit>
+    <ami_80_percent_limit>84000</ami_80_percent_limit>
+    <household_size>5 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>48</total_units>
+    <occupied_units>45</occupied_units>
+    <vacancy_rate>0.062</vacancy_rate>
+    <assisted_units>14</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Camden Test Property</property_name>
+    <property_address>22 River Rd, Camden, NJ 08102</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>1952</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>08021</zip_code>
+    <hud_inspection_score>93</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2023-05-21 00:00:00</affordability_end_date>
+    <latitude>39.94</latitude>
+    <longitude>-75.12</longitude>
+    <census_tract>961294</census_tract>
+    <cbsa_code>15804</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>False</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
+    <update_frequency></update_frequency>
+    <data_license>HUD Open Data License</data_license>
+    <crawler_run_id></crawler_run_id>
+    <version_hash>v1.0.0-hud</version_hash>
+  </Report>
+  <Report id="6">
+    <dataset_name>HUD Income Limits 2025</dataset_name>
+    <fiscal_year>2024</fiscal_year>
+    <state_name>New Jersey</state_name>
+    <state_code>NJ</state_code>
+    <county_name>Burlington County</county_name>
+    <fips_code>34005</fips_code>
+    <hud_geoid></hud_geoid>
+    <msa_code>37980</msa_code>
+    <area_type>Metropolitan</area_type>
+    <ami_median_family_income>101000</ami_median_family_income>
+    <ami_30_percent_limit>35000</ami_30_percent_limit>
+    <ami_50_percent_limit>55000</ami_50_percent_limit>
+    <ami_80_percent_limit>85000</ami_80_percent_limit>
+    <household_size>5 Person Household</household_size>
+    <program_type>Housing Choice Voucher (HCV)/Section 8</program_type>
+    <sub_program>Project Based Voucher</sub_program>
+    <total_units>125</total_units>
+    <occupied_units>124</occupied_units>
+    <vacancy_rate>0.008</vacancy_rate>
+    <assisted_units>98</assisted_units>
+    <funding_source>HCV</funding_source>
+    <property_id>PA123000010</property_id>
+    <property_name>Burlington Test Property</property_name>
+    <property_address>900 Kings Hwy, Moorestown, NJ 08057</property_address>
+    <property_type>Multifamily</property_type>
+    <construction_year>1956</construction_year>
+    <owner_entity>Property Group Partners LP</owner_entity>
+    <managing_agent>Keystone Property Management</managing_agent>
+    <zip_code>08010</zip_code>
+    <hud_inspection_score>76</hud_inspection_score>
+    <last_inspection_date></last_inspection_date>
+    <affordability_end_date>2023-04-26 00:00:00</affordability_end_date>
+    <latitude>39.97</latitude>
+    <longitude>-74.94</longitude>
+    <census_tract>221206</census_tract>
+    <cbsa_code>36180</cbsa_code>
+    <hud_region_name>Mid-Atlantic Region</hud_region_name>
+    <rural_indicator>False</rural_indicator>
+    <source_url>https://www.huduser.gov/portal/datasets/fmr.html</source_url>
+    <scrape_date>2025-10-29</scrape_date>
+    <dataset_last_updated></dataset_last_updated>
     <update_frequency></update_frequency>
     <data_license>HUD Open Data License</data_license>
     <crawler_run_id></crawler_run_id>
