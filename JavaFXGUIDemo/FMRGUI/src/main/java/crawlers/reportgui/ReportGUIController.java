@@ -798,14 +798,59 @@ public class ReportGUIController {
         String numUnitsPHA = GUI1.getCurrentPHANumberUnits();
         HCVUnitsPHA.setText(numUnitsPHA == null ? "" : numUnitsPHA);
         String occupRatePHA = GUI1.getCurrentPHAOccupancyRate();
-        OccupancyRatePHA.setText(occupRatePHA == null ? "" : occupRatePHA);
+        if (OccupancyRatePHA != null) {
+            if (occupRatePHA == null || occupRatePHA.trim().isEmpty()) {
+                OccupancyRatePHA.setText("");
+            } else {
+                try {
+                    double v = Double.parseDouble(occupRatePHA);
+                    OccupancyRatePHA.setText(String.format("%.0f%%", v * 100));
+                } catch (NumberFormatException ex) {
+                    OccupancyRatePHA.setText(occupRatePHA);
+                }
+            }
+        }
+
         String HCVUtilPHA = GUI1.getCurrentPHAHCVUtilRate();
-        HCVUtilRatePHA.setText(HCVUtilPHA == null ? "" : HCVUtilPHA);
+        if (HCVUtilRatePHA != null) {
+            if (HCVUtilPHA == null || HCVUtilPHA.trim().isEmpty()) {
+                HCVUtilRatePHA.setText("");
+            } else {
+                try {
+                    double v = Double.parseDouble(HCVUtilPHA);
+                    HCVUtilRatePHA.setText(String.format("%.0f%%", v * 100));
+                } catch (NumberFormatException ex) {
+                    HCVUtilRatePHA.setText(HCVUtilPHA);
+                }
+            }
+        }
+
         String compPHA = GUI1.getCurrentPHAInspectionComplianceRate();
-        InspectCompPHA.setText(compPHA == null ? "" : compPHA);
+        if (InspectCompPHA != null) {
+            if (compPHA == null || compPHA.trim().isEmpty()) {
+                InspectCompPHA.setText("");
+            } else {
+                try {
+                    double v = Double.parseDouble(compPHA);
+                    InspectCompPHA.setText(String.format("%.0f%%", v * 100));
+                } catch (NumberFormatException ex) {
+                    InspectCompPHA.setText(compPHA);
+                }
+            }
+        }
         String tenIncomePHA = GUI1.getCurrentPHAAvgTenantIncome();
-        TenantIncomePHA.setText(tenIncomePHA == null ? "" : tenIncomePHA);
-        TenantIncomePHA.setText(tenIncomePHA == null ? "" : tenIncomePHA);
+        if (TenantIncomePHA != null) {
+            if (tenIncomePHA == null || tenIncomePHA.trim().isEmpty()) {
+                TenantIncomePHA.setText("");
+            } else {
+                try {
+                    double v = Double.parseDouble(tenIncomePHA);
+                    TenantIncomePHA.setText(String.format("$%.2f", v));
+                } catch (NumberFormatException ex) {
+                    TenantIncomePHA.setText(tenIncomePHA);
+                }
+            }
+        }
         // ... existing PHA field updates ...
 
         //Display average HCV Utilisation Rate
@@ -915,7 +960,7 @@ public class ReportGUIController {
         double avgInspect = GUI1.getAverageHudInspectionScore();
         if (avgInspectScoreHUD != null) {
             if (Double.isNaN(avgInspect)) avgInspectScoreHUD.setText("");
-            else avgInspectScoreHUD.setText(String.format("%.1f", avgInspect));
+            else avgInspectScoreHUD.setText(String.format("%.1f%%", avgInspect));
         }
     }
 
