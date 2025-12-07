@@ -20,6 +20,7 @@ public class HUDReport {
     private String vacancyRate;
     private String hudInspectionScore;
     private String zipCode;
+    private String assistedUnits;
 
     public HUDReport() {}
 
@@ -79,4 +80,7 @@ public class HUDReport {
 
     public String getZipCode() { return zipCode; }
     public void setZipCode(String zipCode) { this.zipCode = zipCode; }
+
+    public String getAssistedUnits() { return assistedUnits; }
+    public void setAssistedUnits(String assistedUnits) { this.assistedUnits = assistedUnits; }
 }

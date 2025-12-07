@@ -74,6 +74,9 @@ public class ReportHandlerHUD extends DefaultHandler {
                 case "occupied_units":
                     currentReport.setOccupiedUnits(content.toString());
                     break;
+                case "assisted_units":
+                    currentReport.setAssistedUnits(content.toString());
+                    break;
                 case "vacancy_rate":
                     currentReport.setVacancyRate(content.toString());
                     break;

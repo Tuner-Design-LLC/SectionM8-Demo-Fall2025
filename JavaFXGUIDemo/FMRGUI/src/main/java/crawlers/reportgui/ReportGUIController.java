@@ -9,6 +9,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.CheckBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import javafx.application.Platform;
+import java.util.Arrays;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
+import java.util.Map;
+import java.util.HashMap;
 import javafx.geometry.Side;
 // unused imports removed
 import javafx.stage.FileChooser;
@@ -299,6 +312,24 @@ public class ReportGUIController {
     private TextField TotalReportsHUD;
 
     @FXML
+    private ImageView chart1View;
+
+    @FXML
+    private ImageView chart2View;
+
+    @FXML
+    private ImageView chart3View;
+
+    @FXML
+    private ImageView chart4View;
+
+    @FXML
+    private ImageView chart5View;
+
+    @FXML
+    private ImageView chart6View;
+
+    @FXML
     private TextField propertyAddressHUD;
 
     @FXML
@@ -344,7 +375,7 @@ public class ReportGUIController {
     private Button stateSelectionButtonHUD;
 
     private ContextMenu hudContextMenu;
-    private String hudSelectedStateAbbrev = ""; // reserved for future filtering (kept for backward compatibility)
+    // hudSelectedStateAbbrev removed; we only use full state names for filtering
     private String filterStateValueHUD = ""; // full state name for HUD filtering
 
     @FXML
@@ -363,12 +394,10 @@ public class ReportGUIController {
             hudContextMenu = new ContextMenu();
             for (String[] pair : states) {
                 String full = pair[0];
-                final String abbr = pair[1];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
                     if (stateSelectionButtonHUD != null) {
                         stateSelectionButtonHUD.setText(full);
-                        hudSelectedStateAbbrev = abbr;
                         filterStateValueHUD = full;
                     }
                 });
@@ -416,6 +445,268 @@ public class ReportGUIController {
         } else {
             hudContextMenu.show(stateSelectionButtonHUD, Side.BOTTOM, 0, 0);
         }
+    }
+
+    @FXML
+    void generateAnalysis(ActionEvent event) {
+        // Run the Python analysis script in a background thread, then load generated PNGs
+        Thread t = new Thread(() -> {
+            try {
+                String projectDir = System.getProperty("user.dir");
+                File script = new File(projectDir + File.separator + "scripts" + File.separator + "analysis_charts.py");
+                File outDir = new File(projectDir + File.separator + "scripts" + File.separator + "analysis_output");
+                if (!script.exists()) {
+                    Platform.runLater(() -> {
+                        Alert a = new Alert(Alert.AlertType.ERROR);
+                        a.setTitle("Analysis");
+                        a.setHeaderText("Script not found");
+                        a.setContentText("Could not find analysis script: " + script.getAbsolutePath());
+                        a.showAndWait();
+                    });
+                    return;
+                }
+
+                ProcessBuilder pb = new ProcessBuilder(Arrays.asList("python", script.getAbsolutePath(), outDir.getAbsolutePath()));
+                pb.directory(new File(projectDir));
+                pb.redirectErrorStream(true);
+                Process p = pb.start();
+                // read output (optional)
+                try (java.io.InputStream is = p.getInputStream();
+                     java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A")) {
+                    String out = s.hasNext() ? s.next() : "";
+                    System.out.println(out);
+                }
+                p.waitFor();
+
+                // After script runs, load images if present
+                File c1 = new File(outDir, "chart_inspection.png");
+                File c2 = new File(outDir, "chart_vacancy.png");
+                File c3 = new File(outDir, "chart_ami.png");
+                File c4 = new File(outDir, "chart_median_tenant_income.png");
+                File c5 = new File(outDir, "chart_assisted_units.png");
+                File c6 = new File(outDir, "chart_rent_burden.png");
+
+                Platform.runLater(() -> {
+                    try {
+                        if (c1.exists() && chart1View != null) chart1View.setImage(new Image(c1.toURI().toString()));
+                        if (c2.exists() && chart2View != null) chart2View.setImage(new Image(c2.toURI().toString()));
+                        if (c3.exists() && chart3View != null) chart3View.setImage(new Image(c3.toURI().toString()));
+                        if (c4.exists() && chart4View != null) chart4View.setImage(new Image(c4.toURI().toString()));
+                        if (c5.exists() && chart5View != null) chart5View.setImage(new Image(c5.toURI().toString()));
+                        if (c6.exists() && chart6View != null) chart6View.setImage(new Image(c6.toURI().toString()));
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setTitle("Analysis");
+                        a.setHeaderText("Charts generated");
+                        a.setContentText("Analysis charts generated and loaded.");
+                        a.showAndWait();
+                    } catch (Exception ex) {
+                        Alert a = new Alert(Alert.AlertType.ERROR);
+                        a.setTitle("Analysis");
+                        a.setHeaderText("Error loading charts");
+                        a.setContentText(ex.getMessage());
+                        a.showAndWait();
+                    }
+                });
+            } catch (Exception ex) {
+                // If Python script fails, fall back to JavaFX chart generation
+                Platform.runLater(() -> {
+                    Alert a = new Alert(Alert.AlertType.WARNING);
+                    a.setTitle("Analysis");
+                    a.setHeaderText("Python analysis failed");
+                    a.setContentText("Falling back to internal JavaFX charts: " + ex.getMessage());
+                    a.showAndWait();
+                    generateChartsJavaFX();
+                });
+            }
+        });
+        t.setDaemon(true);
+        t.start();
+    }
+
+    // Fallback: create simple bar charts with JavaFX from loaded HUD reports and snapshot to ImageViews
+    private void generateChartsJavaFX() {
+        // Gather HUD reports
+        java.util.List<HUDReport> reports = GUI1.getHudReports();
+
+        // Compute inspection values for histogram (we'll bucket into ranges)
+        java.util.List<Double> inspections = new java.util.ArrayList<>();
+        Map<String, java.util.List<Double>> vacancyByCounty = new HashMap<>();
+        Map<String, java.util.List<Double>> amiByState = new HashMap<>();
+
+        for (HUDReport r : reports) {
+            try {
+                String s = r.getHudInspectionScore();
+                if (s != null && !s.trim().isEmpty()) inspections.add(Double.parseDouble(s));
+            } catch (Exception ignored) {}
+            try {
+                String v = r.getVacancyRate();
+                if (v != null && !v.trim().isEmpty()) {
+                    double dv = Double.parseDouble(v);
+                    vacancyByCounty.computeIfAbsent(r.getCountyName()==null?"":r.getCountyName(), k -> new java.util.ArrayList<>()).add(dv);
+                }
+            } catch (Exception ignored) {}
+            try {
+                String a = r.getAmiMedianFamilyIncome();
+                if (a != null && !a.trim().isEmpty()) {
+                    double da = Double.parseDouble(a);
+                    amiByState.computeIfAbsent(r.getStateName()==null?"":r.getStateName(), k -> new java.util.ArrayList<>()).add(da);
+                }
+            } catch (Exception ignored) {}
+        }
+
+        // Create charts on JavaFX thread
+        Platform.runLater(() -> {
+            try {
+                // Chart 1: Inspection histogram as bar chart of buckets
+                CategoryAxis x1 = new CategoryAxis();
+                NumberAxis y1 = new NumberAxis();
+                BarChart<String, Number> bc1 = new BarChart<>(x1, y1);
+                bc1.setLegendVisible(false);
+                bc1.setTitle("HUD Inspection Score Distribution");
+                // buckets 60-70,70-80,...,100
+                Map<String, Integer> buckets = new HashMap<>();
+                for (double v = 60; v < 100; v += 5) buckets.put(String.format("%.0f-%.0f", v, v+5), 0);
+                for (Double val : inspections) {
+                    double vv = Math.max(60, Math.min(99.9, val));
+                    double floor = Math.floor((vv - 60) / 5) * 5 + 60;
+                    String key = String.format("%.0f-%.0f", floor, floor+5);
+                    buckets.put(key, buckets.getOrDefault(key, 0) + 1);
+                }
+                XYChart.Series<String, Number> s1 = new XYChart.Series<>();
+                for (Map.Entry<String, Integer> e : buckets.entrySet()) s1.getData().add(new XYChart.Data<>(e.getKey(), e.getValue()));
+                bc1.getData().add(s1);
+
+                // Chart 2: Average vacancy by county
+                CategoryAxis x2 = new CategoryAxis();
+                NumberAxis y2 = new NumberAxis();
+                BarChart<String, Number> bc2 = new BarChart<>(x2, y2);
+                bc2.setLegendVisible(false);
+                bc2.setTitle("Average Vacancy Rate by County");
+                XYChart.Series<String, Number> s2 = new XYChart.Series<>();
+                for (Map.Entry<String, java.util.List<Double>> e : vacancyByCounty.entrySet()) {
+                    double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
+                    s2.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg * 100));
+                }
+                bc2.getData().add(s2);
+
+                // Chart 3: Average AMI by state
+                CategoryAxis x3 = new CategoryAxis();
+                NumberAxis y3 = new NumberAxis();
+                BarChart<String, Number> bc3 = new BarChart<>(x3, y3);
+                bc3.setLegendVisible(false);
+                bc3.setTitle("Average AMI by State");
+                XYChart.Series<String, Number> s3 = new XYChart.Series<>();
+                for (Map.Entry<String, java.util.List<Double>> e : amiByState.entrySet()) {
+                    double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
+                    s3.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg));
+                }
+                bc3.getData().add(s3);
+
+                // snapshot these charts to images and set into ImageViews
+                SnapshotParameters sp = new SnapshotParameters();
+                sp.setFill(Color.TRANSPARENT);
+                WritableImage wi1 = bc1.snapshot(sp, new WritableImage(800, 400));
+                WritableImage wi2 = bc2.snapshot(sp, new WritableImage(800, 400));
+                WritableImage wi3 = bc3.snapshot(sp, new WritableImage(800, 400));
+                if (chart1View != null) chart1View.setImage(wi1);
+                if (chart2View != null) chart2View.setImage(wi2);
+                if (chart3View != null) chart3View.setImage(wi3);
+                // Create chart 4 (median tenant income by county) from PHA reports
+                try {
+                    java.util.List<PHAReport> pha = GUI1.getPhaReports();
+                    Map<String, java.util.List<Double>> incByCounty = new HashMap<>();
+                    for (PHAReport p : pha) {
+                        try {
+                            String county = p.getCountyName();
+                            String ai = p.getAvgTenantIncome();
+                            if (county != null && ai != null && !ai.trim().isEmpty()) {
+                                double v = Double.parseDouble(ai);
+                                incByCounty.computeIfAbsent(county==null?"":county, k -> new java.util.ArrayList<>()).add(v);
+                            }
+                        } catch (Exception ignored) {}
+                    }
+                    CategoryAxis x4 = new CategoryAxis();
+                    NumberAxis y4 = new NumberAxis();
+                    BarChart<String, Number> bc4 = new BarChart<>(x4, y4);
+                    bc4.setLegendVisible(false);
+                    bc4.setTitle("Median Tenant Income by County");
+                    XYChart.Series<String, Number> s4 = new XYChart.Series<>();
+                    for (Map.Entry<String, java.util.List<Double>> e : incByCounty.entrySet()) {
+                        java.util.List<Double> vals = e.getValue();
+                        double median = 0.0;
+                        if (!vals.isEmpty()) {
+                            java.util.Collections.sort(vals);
+                            int n = vals.size();
+                            if (n % 2 == 1) median = vals.get(n/2);
+                            else median = (vals.get(n/2 - 1) + vals.get(n/2)) / 2.0;
+                        }
+                        s4.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), median));
+                    }
+                    bc4.getData().add(s4);
+                    WritableImage wi4 = bc4.snapshot(sp, new WritableImage(800, 400));
+                    if (chart4View != null) chart4View.setImage(wi4);
+                    // Chart 5: Total assisted units by county (HUD)
+                    try {
+                        Map<String, Integer> assistedByCounty = new HashMap<>();
+                        for (HUDReport h : reports) {
+                            try {
+                                String county = h.getCountyName();
+                                String au = h.getAssistedUnits();
+                                if (county != null && au != null && !au.trim().isEmpty()) {
+                                    int v = Integer.parseInt(au);
+                                    assistedByCounty.put(county==null?"":county, assistedByCounty.getOrDefault(county==null?"":county, 0) + v);
+                                }
+                            } catch (Exception ignored) {}
+                        }
+                        CategoryAxis x5 = new CategoryAxis();
+                        NumberAxis y5 = new NumberAxis();
+                        BarChart<String, Number> bc5 = new BarChart<>(x5, y5);
+                        bc5.setLegendVisible(false);
+                        bc5.setTitle("Total Assisted Units by County");
+                        XYChart.Series<String, Number> s5 = new XYChart.Series<>();
+                        for (Map.Entry<String, Integer> e : assistedByCounty.entrySet()) {
+                            s5.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), e.getValue()));
+                        }
+                        bc5.getData().add(s5);
+                        WritableImage wi5 = bc5.snapshot(sp, new WritableImage(800, 400));
+                        if (chart5View != null) chart5View.setImage(wi5);
+                    } catch (Exception ignored) {}
+                    // Chart 6: Average tenant rent share by county (PHA)
+                    try {
+                        Map<String, java.util.List<Double>> rentShareByCounty = new HashMap<>();
+                        for (PHAReport p : pha) {
+                            try {
+                                String county = p.getCountyName();
+                                String rs = p.getAvgTenantRentShare();
+                                if (county != null && rs != null && !rs.trim().isEmpty()) {
+                                    double v = Double.parseDouble(rs);
+                                    rentShareByCounty.computeIfAbsent(county==null?"":county, k -> new java.util.ArrayList<>()).add(v);
+                                }
+                            } catch (Exception ignored) {}
+                        }
+                        CategoryAxis x6 = new CategoryAxis();
+                        NumberAxis y6 = new NumberAxis();
+                        BarChart<String, Number> bc6 = new BarChart<>(x6, y6);
+                        bc6.setLegendVisible(false);
+                        bc6.setTitle("Average Tenant Rent Share by County");
+                        XYChart.Series<String, Number> s6 = new XYChart.Series<>();
+                        for (Map.Entry<String, java.util.List<Double>> e : rentShareByCounty.entrySet()) {
+                            double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
+                            s6.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg * 100));
+                        }
+                        bc6.getData().add(s6);
+                        WritableImage wi6 = bc6.snapshot(sp, new WritableImage(800, 400));
+                        if (chart6View != null) chart6View.setImage(wi6);
+                    } catch (Exception ignored) {}
+                } catch (Exception ignored) {}
+            } catch (Exception ex) {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Analysis");
+                a.setHeaderText("Error generating charts");
+                a.setContentText(ex.getMessage());
+                a.showAndWait();
+            }
+        });
     }
 
     @FXML

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -618,6 +619,26 @@
                                     </children>
                                 </VBox>
                             </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Analysis">
+                    <content>
+                        <ScrollPane fitToWidth="false" fitToHeight="false" prefViewportWidth="1200.0" prefViewportHeight="420.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1256.0">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="400.0" text="Analysis Dashboard" />
+                                        <Button layoutX="1040.0" layoutY="10.0" mnemonicParsing="false" onAction="#generateAnalysis" text="Generate Analysis" />
+                                        <ImageView fx:id="chart1View" layoutX="14.0" layoutY="50.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                        <ImageView fx:id="chart2View" layoutX="430.0" layoutY="50.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                        <ImageView fx:id="chart3View" layoutX="846.0" layoutY="50.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                        <ImageView fx:id="chart4View" layoutX="14.0" layoutY="370.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                        <ImageView fx:id="chart5View" layoutX="430.0" layoutY="370.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                        <ImageView fx:id="chart6View" layoutX="846.0" layoutY="370.0" fitHeight="300.0" fitWidth="400.0" preserveRatio="true" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
                     </content>
                 </Tab>
             </tabs>

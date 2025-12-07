@@ -78,7 +78,7 @@
     <avg_tenant_income>43208.45</avg_tenant_income>
     <median_rent_dist></median_rent_dist>
     <household_type_dist></household_type_dist>
-    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_tenant_rent_share>0.28</avg_tenant_rent_share>
     <avg_subsidy_amount></avg_subsidy_amount>
     <semap_score></semap_score>
     <last_hud_audit_date></last_hud_audit_date>
@@ -127,7 +127,7 @@
     <avg_tenant_income>20090.18</avg_tenant_income>
     <median_rent_dist></median_rent_dist>
     <household_type_dist>{single_parent":52%, "other":…}"</household_type_dist>
-    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_tenant_rent_share>0.36</avg_tenant_rent_share>
     <avg_subsidy_amount></avg_subsidy_amount>
     <semap_score></semap_score>
     <last_hud_audit_date></last_hud_audit_date>
@@ -176,7 +176,7 @@
     <avg_tenant_income>61218.75</avg_tenant_income>
     <median_rent_dist></median_rent_dist>
     <household_type_dist></household_type_dist>
-    <avg_tenant_rent_share></avg_tenant_rent_share>
+    <avg_tenant_rent_share>0.25</avg_tenant_rent_share>
     <avg_subsidy_amount></avg_subsidy_amount>
     <semap_score></semap_score>
     <last_hud_audit_date></last_hud_audit_date>

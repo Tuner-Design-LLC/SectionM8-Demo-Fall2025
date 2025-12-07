@@ -811,6 +811,16 @@ public class ReportGUI {
         }
     }
 
+    // Expose HUD reports for visualization/analysis
+    public ArrayList<HUDReport> getHudReports() {
+        return new ArrayList<>(HUDreports);
+    }
+
+    // Expose PHA reports for visualization/analysis
+    public ArrayList<PHAReport> getPhaReports() {
+        return new ArrayList<>(PHAreports);
+    }
+
     // --- List validators for temporary parsed lists ---
     public boolean listHasValidFMRReports(ArrayList<FMRReport> list){
         if (list == null) return false;
