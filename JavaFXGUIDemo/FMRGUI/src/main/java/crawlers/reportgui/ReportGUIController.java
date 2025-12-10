@@ -12,7 +12,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.application.Platform;
-import java.util.Arrays;
+// import java.util.Arrays; // unused after changes
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.BarChart;
@@ -464,6 +464,25 @@ public class ReportGUIController {
 
     @FXML
     void generateAnalysis(ActionEvent event) {
+        // Require at least one of each report type (FMR, PHA, HUD) before generating analysis
+        int numFMR = 0, numPHA = 0, numHUD = 0;
+        try {
+            numFMR = GUI1.getNumOfReportsFMR();
+            numPHA = GUI1.getNumOfReportsPHA();
+            numHUD = GUI1.getNumOfReportsHUD();
+        } catch (Exception ignored) {}
+        if (numFMR == 0 || numPHA == 0 || numHUD == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setTitle("Analysis");
+            a.setHeaderText("Insufficient reports loaded");
+            a.setContentText("Please load at least one FMR, one PHA, and one HUD report before generating analysis.");
+            a.showAndWait();
+            return;
+        }
+
+        final boolean hasHUD = numHUD > 0;
+        final boolean hasPHA = numPHA > 0;
+
         // Run the Python analysis script in a background thread, then load generated PNGs
         Thread t = new Thread(() -> {
             try {
@@ -481,7 +500,14 @@ public class ReportGUIController {
                     return;
                 }
 
-                ProcessBuilder pb = new ProcessBuilder(Arrays.asList("python", script.getAbsolutePath(), outDir.getAbsolutePath()));
+                // Build command and pass flags indicating which charts to produce (HUD/ PHA)
+                java.util.List<String> cmd = new java.util.ArrayList<>();
+                cmd.add("python");
+                cmd.add(script.getAbsolutePath());
+                cmd.add(outDir.getAbsolutePath());
+                if (hasHUD) cmd.add("--hud");
+                if (hasPHA) cmd.add("--pha");
+                ProcessBuilder pb = new ProcessBuilder(cmd);
                 pb.directory(new File(projectDir));
                 pb.redirectErrorStream(true);
                 Process p = pb.start();
