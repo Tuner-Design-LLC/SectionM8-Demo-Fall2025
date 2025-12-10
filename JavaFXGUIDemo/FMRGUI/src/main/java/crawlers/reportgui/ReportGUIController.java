@@ -126,6 +126,9 @@ public class ReportGUIController {
     @FXML
     private TabPane MainTabPane;
 
+    @FXML
+    private Button TopOpenReports;
+
 
     @FXML
     void BrowseReport(ActionEvent event) {
@@ -450,6 +453,20 @@ public class ReportGUIController {
                 filterContextMenuPHA.getItems().add(mi);
             }
         }
+
+        // Disable the top Open Reports button while on the Analysis tab
+        try {
+            if (MainTabPane != null && TopOpenReports != null) {
+                // initial state
+                javafx.scene.control.Tab sel = MainTabPane.getSelectionModel().getSelectedItem();
+                TopOpenReports.setDisable(sel != null && "Analysis".equals(sel.getText()));
+                // listen for changes
+                MainTabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
+                    boolean disable = newTab != null && "Analysis".equals(newTab.getText());
+                    TopOpenReports.setDisable(disable);
+                });
+            }
+        } catch (Exception ignored) {}
     }
 
     @FXML
