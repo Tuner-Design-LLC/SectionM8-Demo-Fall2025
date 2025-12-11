@@ -1,5 +1,6 @@
 package crawlers.reportgui;
 
+// PHAReport class encapsulates Public Housing Agency (PHA) report details.
 public class PHAReport {
     private String reportID;
     private String phaCode;
@@ -52,7 +53,7 @@ public class PHAReport {
 
     public PHAReport(){}
 
-    // get / set methods
+    // Getters and Setters
     public String getReportID() {
         return reportID;
     }
@@ -438,6 +439,7 @@ public class PHAReport {
         this.contactLastVerified = contactLastVerified;
     }
 
+    // String representation of the PHAReport.
     @Override
     public String toString() {
         return String.format("PHA ID: %-4s %-4s %s %-10s",Integer.parseInt(reportID)+1,stateCode,countyName,zipCode);

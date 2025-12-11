@@ -1,5 +1,6 @@
 package crawlers.reportgui;
 
+// HUDReport class encapsulates HUD report details.
 public class HUDReport {
     private String reportID;
     private String datasetName;
@@ -24,6 +25,7 @@ public class HUDReport {
 
     public HUDReport() {}
 
+    // Setters and Getters
     public String getReportID() { return reportID; }
     public void setReportID(String reportID) { this.reportID = reportID; }
 
@@ -84,6 +86,7 @@ public class HUDReport {
     public String getAssistedUnits() { return assistedUnits; }
     public void setAssistedUnits(String assistedUnits) { this.assistedUnits = assistedUnits; }
 
+    // String representation of the HUDReport. 
     @Override
     public String toString() {
         return String.format("HUD ID: %-4s %-6s %-4s %s %-10s",Integer.parseInt(reportID)+1,fiscalYear,stateCode,countyName,zipCode);

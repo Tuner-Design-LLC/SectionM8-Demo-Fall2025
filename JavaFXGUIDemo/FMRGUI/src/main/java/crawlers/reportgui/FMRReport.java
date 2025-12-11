@@ -1,5 +1,6 @@
 package crawlers.reportgui;
 
+// FMRReport class encapsulates Fair Market Rent (FMR) report details.
 public class FMRReport {
     private String reportID;
     private String reportType;
@@ -29,7 +30,7 @@ public class FMRReport {
 
     FMRReport(){}
 
-    //getters
+    // Getters
     public String getReportID() {
         return reportID;
     }
@@ -130,7 +131,7 @@ public class FMRReport {
         return zipCode;
     }
 
-    //setters
+    // Setters
     public void setReportID(String reportID) {
         this.reportID = reportID;
     }
@@ -231,6 +232,7 @@ public class FMRReport {
         this.crawlerRunData = crawlerRunData;
     }
 
+    // String representation of the FMRReport
     @Override
     public String toString() {
         return String.format("FMR ID: %-4s %-6s %-4s %s %-10s",Integer.parseInt(reportID)+1,fiscalYear,stateCode,countyName,zipCode);

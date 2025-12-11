@@ -14,34 +14,36 @@ import sys
 import pandas as pd
 from FMRReport import FMRCrawlerReport
 
-# When running this script directly from the `Crawlers/` folder, the repository
-# root isn't on sys.path which prevents `from Util...` imports. Ensure the repo
-# root is available so sibling packages like `Util` can be imported.
+# When running this script directly from the Crawlers folder, the repository
+# root isn't on sys.path which prevents from Util imports. Ensure the repo
+# root is available so helper packages like Util can be imported.
 repo_root = Path(__file__).resolve().parents[1]
 if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 from Util.crawler_utils import load_dataset, ensure_columns, dataframe_to_xml
 
-
+# This class provides basic FMR crawler functionality for testing purposes.
 class FMRCrawler:
     def __init__(self, dataset_path: str = None):
         self.dataset_path = dataset_path
         self.raw = None
         self.df = pd.DataFrame()
 
+    # Load dataset from the given path or the default dataset path.
     def load(self, path: str = None) -> pd.DataFrame:
         p = path or self.dataset_path
         self.raw = load_dataset(p, dtype=str)
         return self.raw
-
+    
+    # Normalize the DataFrame to ensure required columns are present.
     def normalize(self, df: pd.DataFrame = None) -> pd.DataFrame:
         if df is None:
             df = self.raw
         if df is None:
             raise ValueError("No data loaded to normalize.")
 
-        # canonical FMR columns used by the GUI
+        # Canonical FMR columns used by the GUI
         required = [
             "fiscal_year","state_name","state_code","county_name","fips_code","hud_geo_id","msa_code",
             "area_type","hud_region_code","zip_code","num_bedrooms","fair_market_rent","percentile_type",
@@ -52,13 +54,14 @@ class FMRCrawler:
         self.df = ensure_columns(df, required, fill_value=None)
         return self.df
 
+    # Create an XML report from the DataFrame and save it to the specified path.
     def create_xml_report(self, out_path: str = None, df: pd.DataFrame = None,
                           root_name: str = "FMRReports", item_name: str = "Report") -> None:
         df = df or self.df
         if df is None or df.empty:
             raise ValueError("No data available to write XML report.")
 
-        # default output path -> repository-root/Test Reports/TestFMRReport.xml
+        # Default output path -> repository-root/Test Reports/TestFMRReport.xml
         if out_path is None:
             repo_root = Path(__file__).resolve().parents[1]
             out_path = str(repo_root / "Test Reports" / "TestFMRReport.xml")
@@ -91,21 +94,23 @@ class FMRCrawler:
             "crawler_run_data": "CrawlerRunData"
         }
 
+        # Function to normalize tags using the mapping
         def tag_normalizer(s):
             key = str(s).strip()
             return mapping.get(key, key)
 
         dataframe_to_xml(df, out_path, root_name=root_name, item_name=item_name,
                          tag_normalizer=tag_normalizer)
-
+        
+    # Generate a simple test report with placeholder values.
     def generate_test_report(self) -> FMRCrawlerReport:
-        # returns a simple FMRCrawlerReport object with placeholder values
         return FMRCrawlerReport(
             "Test00","Test01","Test02","Test03","Test04","Test05",
             "Test06","Test07","Test08","Test09","Test10","Test11",
             "Test12","Test13","Test14","Test15","Test16","Test17","Test18","Test19","Test20","Test21","Test22"
         )
 
+    # Generate reports from the repository-level test Excel file.
     def generate_reports_from_excel(self, excel_path: str = None) -> bool:
         if excel_path is None:
             repo_root = Path(__file__).resolve().parents[1]
@@ -126,17 +131,17 @@ class FMRCrawler:
         self.df = self.normalize(df)
         return not self.df.empty
 
-
+# Main execution for testing the FMRCrawler
 if __name__ == "__main__":
     crawler = FMRCrawler()
     generated = crawler.generate_reports_from_excel()
 
     if not generated:
-        # fallback create a few placeholder reports
+        # Fallback: create a few placeholder reports
         df = pd.DataFrame([vars(crawler.generate_test_report().__dict__)])
         crawler.df = df
 
-    # write the XML to repository-level Test Reports folder
+    # Write the XML to repository-level Test Reports folder
     try:
         crawler.create_xml_report()
         print("Exported FMR reports to Test Reports/TestFMRReport.xml successfully!")

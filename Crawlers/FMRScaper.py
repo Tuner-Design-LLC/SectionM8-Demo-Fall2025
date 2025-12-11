@@ -6,6 +6,7 @@ from FMRCrawlerTest import FMRCrawler
 # This is the path to the Excel File (moved to repository-level "Test Excels" folder)
 EXCEL_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "Test Excels", "FMR_Crawler_Test_Excel.xlsx"))
 
+# Function to scrape data from the Excel file and generate XML report
 def scrape_data(file_path):
     # Load Excel file
     df = pd.read_excel(file_path)
@@ -46,5 +47,6 @@ def scrape_data(file_path):
     crawler.createXMLReport()
     print("XML file created")
 
+# Main execution
 if __name__ == "__main__":
     scrape_data(EXCEL_FILE)

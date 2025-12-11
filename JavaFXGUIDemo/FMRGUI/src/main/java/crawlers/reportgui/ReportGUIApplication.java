@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// ReportGUIApplication class to launch the JavaFX GUI for report display.
 public class ReportGUIApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

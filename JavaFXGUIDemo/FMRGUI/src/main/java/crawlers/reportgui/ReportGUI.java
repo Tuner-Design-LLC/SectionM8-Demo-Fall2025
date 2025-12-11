@@ -12,6 +12,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+// ReportGUI class manages and processes FMR, PHA, and HUD reports.
 public class ReportGUI {
     private String filePath;
     private Boolean filterEnabledFMR;
@@ -27,7 +28,7 @@ public class ReportGUI {
     private ArrayList<HUDReport> HUDReportsFiltered = new ArrayList<>();
     private Boolean filterEnabledHUD;
      
-
+    // Constructor to initialize filter flags and current report indices
     public ReportGUI(){
         filterEnabledFMR = false;
         filterEnabledPHA = false;
@@ -38,18 +39,20 @@ public class ReportGUI {
         currentReportHUD = 0;
     }
 
-    //HUD report tracking
+    // HUD report tracking
     private int currentReportHUD;
 
+    // Get all num of HUD reports
     public int getNumOfReportsHUD(){
         return HUDreports.size();
     }
 
+    // Get all num of filtered reports HUD
     public int getNumOfFilteredReportsHUD(){
         return HUDReportsFiltered.size();
     }
 
-    //create a filtered list of reports by state HUD
+    // Create a filtered list of reports by state HUD
     public void filterReportsByStateHUD(String stateKey){
         for(HUDReport report: HUDreports){
             if(Objects.equals(report.getStateName(), stateKey)){
@@ -58,12 +61,12 @@ public class ReportGUI {
         }
     }
 
-    //remove all filtered data HUD
+    // Remove all filtered data HUD
     public void resetFilterReportListHUD(){
         HUDReportsFiltered = new ArrayList<>();
     }
 
-    //toggle the filter on / off HUD
+    // Toggle the filter on / off HUD
     public void toggleFilterHUD(){
         filterEnabledHUD = !filterEnabledHUD;
     }
@@ -82,6 +85,7 @@ public class ReportGUI {
         return false;
     }
 
+    // Get & Set current HUD report index
     public int getCurrentReportHUD(){
         return currentReportHUD;
     }
@@ -90,6 +94,7 @@ public class ReportGUI {
         currentReportHUD = report;
     }
 
+    // Increase & Decrease current HUD report
     public void increaseCurrentReportHUD(){
         if (currentReportHUD +1 < getNumOfReportsHUD()){
             currentReportHUD++;
@@ -102,13 +107,13 @@ public class ReportGUI {
         }
     }
 
-    //remove all HUD reports
+    // Remove all HUD reports
     public void resetHUDReportList(){
         HUDreports = new ArrayList<>();
         currentReportHUD = 0;
     }
 
-    //create a filtered list of reports by state PHA
+    // Create a filtered list of reports by state PHA
     public void filterReportsByStatePHA(String stateKey){
         for(PHAReport report: PHAreports){
             if(Objects.equals(report.getStateName(), stateKey)){
@@ -117,23 +122,23 @@ public class ReportGUI {
         }
     }
 
-    //remove all filtered data PHA
+    // Remove all filtered data PHA
     public void resetFilterReportListPHA(){
         PHAReportsFiltered = new ArrayList<>();
     }
 
-    //get all num of filtered reports PHA
+    // Get all num of filtered reports PHA
     public int getNumOfFilteredReportsPHA(){
         return PHAReportsFiltered.size();
     }
 
-    //toggle the filter on / off PHA
+    // Toggle the filter on / off PHA
     public void toggleFilterPHA(){
         filterEnabledPHA = !filterEnabledPHA;
     }
 
     
-    //get Median Tenant Income for PHA reports
+    // Get Median Tenant Income for PHA reports
     public double getMedianTenantIncomePHA(){
         List<Double> incomes = new ArrayList<>();
         if(filterEnabledPHA) {
@@ -157,7 +162,7 @@ public class ReportGUI {
         if (incomes.isEmpty()) {
             return Double.NaN;
         }
-
+        // Calculate median    
         Collections.sort(incomes);
         int size = incomes.size();
         if (size % 2 == 1) {
@@ -167,7 +172,7 @@ public class ReportGUI {
         }
     }
 
-    //get average HCV utilization rate for PHA reports
+    // Get average HCV utilization rate for PHA reports
     public double getAverageHcvUtilRatePHA(){
         double temp = 0;
         int count = 0;
@@ -191,7 +196,7 @@ public class ReportGUI {
         return avg;
     }
 
-    // get average Occupancy Rate for PHA reports
+    // Get average Occupancy Rate for PHA reports
     public double getAvgOccupancyRatePHA() {
         double temp = 0;
         int count = 0;
@@ -215,7 +220,7 @@ public class ReportGUI {
         return temp / count;
     }
 
-    // get average Inspection Compliance Rate for PHA reports
+    // Get average Inspection Compliance Rate for PHA reports
     public double getAvgInspectionRatePHA() {
         double temp = 0;
         int count = 0;
@@ -239,7 +244,7 @@ public class ReportGUI {
         return temp / count;
     }
 
-    // get average number of HCV units for PHA reports
+    // Get average number of HCV units for PHA reports
     public double getAvgHcvUnitsPHA() {
         double temp = 0;
         int count = 0;
@@ -261,19 +266,19 @@ public class ReportGUI {
         }
 
         double avg = temp / count;
-        return (double) Math.round(avg);   // rounded integer as a double
+        return (double) Math.round(avg);   // Rounded integer as a double
 
 
 
     }
 
 
-    //sets the file path to load from
+    // Sets the file path to load from
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
-    //opens the XML file at the given path and extracts the data into reports
+    // Opens the XML file at the given path and extracts the data into reports
     public void openXMLReportFMR() throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
@@ -281,7 +286,7 @@ public class ReportGUI {
         ReportHandlerFMR handler = new ReportHandlerFMR();
         parser.parse(new File(filePath), handler);
 
-        //create a temp list of imported reports then only add non-dupe ids
+        // Create a temp list of imported reports then only add non-dupe ids
         ArrayList<FMRReport> tempReports = new ArrayList<>(handler.getReports());
         for (FMRReport report:tempReports){
             boolean flag = true;
@@ -296,7 +301,7 @@ public class ReportGUI {
         }
     }
 
-    //opens the XML file at the given path and extracts the data into reports
+    // Opens the XML file at the given path and extracts the data into reports
     public void openXMLReportPHA() throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
@@ -304,7 +309,7 @@ public class ReportGUI {
         ReportHandlerPHA handler = new ReportHandlerPHA();
         parser.parse(new File(filePath), handler);
 
-        //create a temp list of imported reports then only add non-dupe ids
+        // Create a temp list of imported reports then only add non-dupe ids
         ArrayList<PHAReport> tempReports = new ArrayList<>(handler.getReports());
         for (PHAReport report:tempReports){
             boolean flag = true;
@@ -319,7 +324,7 @@ public class ReportGUI {
         }
     }
 
-    //opens the XML file at the given path and extracts HUD data into reports
+    // Opens the XML file at the given path and extracts HUD data into reports
     public void openXMLReportHUD() throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
@@ -327,6 +332,7 @@ public class ReportGUI {
         ReportHandlerHUD handler = new ReportHandlerHUD();
         parser.parse(new File(filePath), handler);
 
+        // Create a temp list of imported reports then only add non-dupe ids
         ArrayList<HUDReport> tempReports = new ArrayList<>(handler.getReports());
         for (HUDReport report: tempReports) {
             boolean flag = true;
@@ -342,7 +348,7 @@ public class ReportGUI {
         }
     }
 
-    //methods for dealing with the current number of reports and the selected report
+    // Methods for dealing with the current number of reports and the selected report
     public int getTotalNumOfReports(){
         return FMRreports.size()+PHAreports.size()+HUDreports.size();
     }
@@ -364,6 +370,7 @@ public class ReportGUI {
         return false;
     }
 
+    // Get all num of FMR reports
     public int getNumOfReportsPHA(){
         return PHAreports.size();
     }
@@ -382,6 +389,7 @@ public class ReportGUI {
         return false;
     }
 
+    // Get & Set current FMR and PHA report indices
     public int getCurrentReportFMR(){
         return currentReportFMR;
     }
@@ -398,35 +406,35 @@ public class ReportGUI {
         currentReportPHA = report;
     }
 
-    //increase current report
+    // Increase current report
     public void increaseCurrentReportFMR(){
         if (currentReportFMR +1 < getNumOfReportsFMR()){
             currentReportFMR++;
         }
     }
 
-    //decrease current report
+    // Decrease current report
     public void decreaseCurrentReportFMR(){
         if (currentReportFMR > 0){
             currentReportFMR--;
         }
     }
 
-    //increase current report PHP
+    // Increase current report PHA
     public void increaseCurrentReportPHA(){
         if (currentReportPHA+1 < getNumOfReportsPHA()){
             currentReportPHA++;
         }
     }
 
-    //decrease current report PHP
+    // Decrease current report PHA
     public void decreaseCurrentReportPHA(){
         if (currentReportPHA > 0){
             currentReportPHA--;
         }
     }
 
-    //average methods include two cases depending on if the filter is enabled or not
+    // Average methods include two cases depending on if the filter is enabled or not
     public double getAverageFMRNumber(){
         double temp=0;
         if(filterEnabledFMR){
@@ -482,7 +490,7 @@ public class ReportGUI {
         return (double) Math.round(avg);
     }
 
-    //create a filtered list of reports by state FMR
+    // Create a filtered list of reports by state FMR
     public void filterReportsByStateFMR(String stateKey){
         for(FMRReport report: FMRreports){
             if(Objects.equals(report.getStateName(), stateKey)){
@@ -491,34 +499,34 @@ public class ReportGUI {
         }
     }
 
-    //remove all filtered data FMR
+    // Remove all filtered data FMR
     public void resetFilterReportListFMR(){
         FMRReportsFiltered = new ArrayList<>();
     }
 
-    //remove all FMR reports
+    // Remove all FMR reports
     public void resetFMRReportList(){
         FMRreports = new ArrayList<>();
         currentReportFMR = 0;
     }
 
-    //get all num of filtered reports FMR
+    // Get all num of filtered reports FMR
     public int getNumOfFilteredReportsFMR(){
         return FMRReportsFiltered.size();
     }
 
-    //toggle the filter on / off FMR
+    // Toggle the filter on / off FMR
     public void toggleFilterFMR(){
         filterEnabledFMR = !filterEnabledFMR;
     }
 
-    //remove all PHA reports
+    // Remove all PHA reports
     public void resetPHAReportList(){
         PHAreports = new ArrayList<>();
         currentReportPHA = 0;
     }
 
-    //get methods for FMR reports
+    // Get methods for FMR reports
     public String getCurrentFMRReportFiscalYear(){
         return FMRreports.get(currentReportFMR).getFiscalYear();
     }
@@ -551,22 +559,22 @@ public class ReportGUI {
         return FMRreports.get(currentReportFMR).getMedianHouseholdIncome();
     }
 
-    //Get FMR Report List for list view
+    // Get FMR Report List for list view
     public ArrayList<FMRReport> getFMRReportList(){
         return FMRreports;
     }
 
-    //Get HUD Report List for list view
+    // Get HUD Report List for list view
     public ArrayList<HUDReport> getHUDReportList(){
         return HUDreports;
     }
 
-    //Get PHA Report List for list view
+    // Get PHA Report List for list view
     public ArrayList<PHAReport> getPHAReportList(){
         return PHAreports;
     }
 
-    //get methods for PHA reports
+    // Get methods for PHA reports
     public String getCurrentPHAReportState(){
         return PHAreports.get(currentReportPHA).getStateName();
     }
@@ -632,7 +640,7 @@ public class ReportGUI {
         return PHAreports.get(currentReportPHA).getAvgTenantIncome();
     }
 
-    //get methods for HUD reports (basic selection getters)
+    // Get methods for HUD reports (basic selection getters)
     public String getCurrentHUDReportPropertyAddress(){
         return HUDreports.get(currentReportHUD).getPropertyAddress();
     }
@@ -734,7 +742,7 @@ public class ReportGUI {
         return sum / count;
     }
 
-    //available units = total_units - occupied_units (returns empty string if values missing)
+    // Available units = total_units - occupied_units (returns empty string if values missing)
     public String getCurrentHUDAvailableUnits(){
         HUDReport r = HUDreports.get(currentReportHUD);
         if (r == null) return "";
@@ -794,6 +802,7 @@ public class ReportGUI {
         }
     }
 
+    // Add PHA reports with de-duplication
     public void addPHAReports(ArrayList<PHAReport> tempReports){
         for (PHAReport report: tempReports){
             boolean flag = true;
@@ -809,6 +818,7 @@ public class ReportGUI {
         }
     }
 
+    // Add HUD reports with de-duplication
     public void addHUDReports(ArrayList<HUDReport> tempReports){
         for (HUDReport report: tempReports){
             boolean flag = true;

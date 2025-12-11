@@ -9,7 +9,7 @@ hud_crawler_test.py
 
 Simple test adapter for the HUDCrawler. This module builds a small test DataFrame with
 representative columns, runs the crawler's normalize() method, writes
-a CSV for inspection, and prints a small summary.
+a CSV/XML for inspection, and prints a small summary.
 """
 
 # This function generates a small test DataFrame using pandas with representative HUD data
@@ -118,11 +118,12 @@ def run_test():
     except Exception as e:
         xml_status = f"FAIL: {e}"
 
+    # Print summary
     print(f"Wrote {out_csv} ({len(normalized)} rows)")
     print(f"Wrote {out_xml} ({len(normalized)} rows) — XML parse: {xml_status}")
     print("Summary:", crawler.summary())
     print("\nExported all reports to TestHUDReport.xml successfully!")
 
-
+# Main execution
 if __name__ == "__main__":
     run_test()

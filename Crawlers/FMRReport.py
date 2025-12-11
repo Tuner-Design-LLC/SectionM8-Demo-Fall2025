@@ -2,7 +2,7 @@
 # This class is designed to be implemented by the FMRCrawler to create list of report objects that can be exported to XML format.
 class FMRCrawlerReport:
 
-    #create a report with all relevant data attributes
+    # Create a report with all relevant data attributes
     def __init__(self,fiscal_year,state_name,state_code,county_name,fips_code,hud_geo_id,msa_code,area_type,hud_region_code,zip_code,num_bedrooms,fair_market_rent,percentile_type,bedroom_dist_source,survey_source_year,adjustment_factor,
                  is_small_area_fmr,median_household_income,source_url,scrape_date,version_hash,update_freq,crawler_run_data):
         
@@ -30,7 +30,7 @@ class FMRCrawlerReport:
         self._update_freq = update_freq
         self._crawler_run_data = crawler_run_data
 
-    #getter methods for all data attributes
+    # Getter methods for all data attributes
     def get_fiscal_year(self):
         return self._fiscal_year
     def get_state_name(self):

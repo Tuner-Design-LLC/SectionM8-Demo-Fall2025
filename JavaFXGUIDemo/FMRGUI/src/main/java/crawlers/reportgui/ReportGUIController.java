@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.application.Platform;
-// import java.util.Arrays; // unused after changes
+// import java.util.Arrays; // Unused after changes, removal TBD
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.BarChart;
@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import java.util.Map;
 import java.util.HashMap;
 import javafx.geometry.Side;
-// unused imports removed
+// Unused imports removed
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -29,12 +29,14 @@ import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+// Controller class for the Report GUI Application.
 public class ReportGUIController {
     //BASE GUI USED FOR ALL REPORTS
     private ReportGUI GUI1 = new ReportGUI();
-    // remember last directory used by the file chooser during this session
+    // Remember last directory used by the file chooser during this session
     private File lastBrowseDir = null;
 
+    // FXML UI components
     @FXML
     private ListView<FMRReport> FMRListView;
 
@@ -134,7 +136,7 @@ public class ReportGUIController {
     @FXML
     private Button TopOpenReports;
 
-
+    // Browse for a report file
     @FXML
     void BrowseReport(ActionEvent event) {
         FileChooser chooser = new FileChooser();
@@ -149,24 +151,26 @@ public class ReportGUIController {
             if (lastBrowseDir != null && lastBrowseDir.exists() && lastBrowseDir.isDirectory()) {
                 chooser.setInitialDirectory(lastBrowseDir);
             } else {
-                // fall back to user's home folder
+                // Fall back to user's home folder
                 File home = new File(System.getProperty("user.home"));
                 if (home.exists() && home.isDirectory()) chooser.setInitialDirectory(home);
             }
         } catch (Exception ignored) {}
-
+        // Show the file chooser dialog
         File selected = chooser.showOpenDialog(ReportPath.getScene().getWindow());
         if (selected != null) {
             String path = selected.getAbsolutePath();
-            // populate the existing ReportPath field (top browse field)
+            // Populate the existing ReportPath field (top browse field)
             ReportPath.setText(path);
-            // remember the folder for next time
+            // Remember the folder for next time
             try { lastBrowseDir = selected.getParentFile(); } catch (Exception ignored) {}
         }
     }
 
+    // Open reports based on selected tab
     @FXML
     void OpenReports(ActionEvent event) {
+        // Determine which tab is selected
         if (MainTabPane == null || MainTabPane.getSelectionModel().getSelectedItem() == null) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Open Reports");
@@ -177,7 +181,7 @@ public class ReportGUIController {
         }
 
         String tabText = MainTabPane.getSelectionModel().getSelectedItem().getText();
-
+        // Call the appropriate open method
         try {
             if ("FMR Reports".equals(tabText)) {
                 OpenReportFMR(event);
@@ -192,6 +196,7 @@ public class ReportGUIController {
                 a.setContentText("Unrecognized tab: " + tabText);
                 a.showAndWait();
             }
+            // Catch exceptions from any of the open methods
         } catch (Exception ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Open Reports");
@@ -201,9 +206,11 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //opens the selected HUD report path and update GUI
+    // Opens the selected HUD report path and update GUI
+    @FXML 
     void OpenReportHUD(ActionEvent event) {
         String path = (this.ReportPath == null) ? null : this.ReportPath.getText();
+        // Validate path
         if (path == null || path.trim().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setTitle("Open Report");
@@ -212,7 +219,7 @@ public class ReportGUIController {
             a.showAndWait();
             return;
         }
-
+        // Check if file exists
         File f = new File(path);
         if (!f.exists() || !f.isFile()) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -222,7 +229,7 @@ public class ReportGUIController {
             a.showAndWait();
             return;
         }
-
+        // Set file path and parse HUD reports
         GUI1.setFilePath(path);
         try {
             ArrayList<HUDReport> tmp = GUI1.parseReportsHUD();
@@ -236,11 +243,12 @@ public class ReportGUIController {
             }
 
             GUI1.addHUDReports(tmp);
-            // ensure the HUD selection is set to first report so view populates
+            // Ensure the HUD selection is set to first report so view populates
             if (GUI1.getNumOfReportsHUD() > 0) GUI1.setCurrentReportHUD(0);
             System.out.println("[DEBUG] OpenReportHUD: added tmp=" + (tmp == null ? 0 : tmp.size()) + " totalHUD=" + GUI1.getNumOfReportsHUD());
 
             updateReportGUIHUD();
+        // Catch specific exceptions for better error messages
         } catch (org.xml.sax.SAXException | javax.xml.parsers.ParserConfigurationException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Open Report");
@@ -268,6 +276,7 @@ public class ReportGUIController {
         }
     }
 
+    // FXML UI components for HUD & PHA tab
     @FXML
     private TextField State;
 
@@ -398,9 +407,10 @@ public class ReportGUIController {
     private Button stateSelectionButtonHUD;
 
     private ContextMenu hudContextMenu;
-    // hudSelectedStateAbbrev removed; we only use full state names for filtering
-    private String filterStateValueHUD = ""; // full state name for HUD filtering
+    // hudSelectedStateAbbrev removed; only use full state names for filtering
+    private String filterStateValueHUD = ""; // Full state name for HUD filtering
 
+    // Initialize method to set up UI components and event handlers
     @FXML
     public void initialize() {
         // Use full state names for display but keep abbreviations for filtering
@@ -435,8 +445,8 @@ public class ReportGUIController {
                 String full = pair[0];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
-                    // store full state name to match ReportGUI.filterReportsByStateFMR which
-                    // compares against report.getStateName()
+                    // Store full state name to match ReportGUI.filterReportsByStateFMR which
+                    // Compares against report.getStateName()
                     filterStateValueFMR = full;
                     stateFilterButtonFMR.setText(full);
                 });
@@ -451,7 +461,7 @@ public class ReportGUIController {
                 String full = pair[0];
                 MenuItem mi = new MenuItem(full);
                 mi.setOnAction(ae -> {
-                    // store full state name to match ReportGUI.filterReportsByStatePHA
+                    // Store full state name to match ReportGUI.filterReportsByStatePHA
                     filterStateValuePHA = full;
                     stateFilterButtonPHA.setText(full);
                 });
@@ -462,10 +472,10 @@ public class ReportGUIController {
         // Disable the top Open Reports button while on the Analysis tab
         try {
             if (MainTabPane != null && TopOpenReports != null) {
-                // initial state
+                // Initial state
                 javafx.scene.control.Tab sel = MainTabPane.getSelectionModel().getSelectedItem();
                 TopOpenReports.setDisable(sel != null && "Analysis".equals(sel.getText()));
-                // listen for changes
+                // Listener for changes
                 MainTabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
                     boolean disable = newTab != null && "Analysis".equals(newTab.getText());
                     TopOpenReports.setDisable(disable);
@@ -473,43 +483,44 @@ public class ReportGUIController {
             }
         } catch (Exception ignored) {}
 
-        // creation of FMR List
+        // Creation of FMR List
         ListView<FMRReport> FMRReportList = new ListView<FMRReport>();
         ObservableList<FMRReport> reports = FXCollections.observableArrayList(GUI1.getFMRReportList());
         FMRReportList.setItems(reports);
-        //create listener to get the selected report and update text fields
+        // Create listener to get the selected report and update text fields
         FMRListView.getSelectionModel().selectedIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            //update pointer to selected report
+            // Update pointer to selected report
             GUI1.setCurrentReportFMR((Integer) newIndex);
-            //update the text fields
+            // Update the text fields
             updateReportGUIFMR();
         });
 
-        // creation of HUD List
+        // Creation of HUD List
         ListView<HUDReport> HUDReportList = new ListView<HUDReport>();
         ObservableList<HUDReport> reportsHUD = FXCollections.observableArrayList(GUI1.getHUDReportList());
         HUDReportList.setItems(reportsHUD);
-        //create listener to get the selected report and update text fields
+        // Create listener to get the selected report and update text fields
         HUDListView.getSelectionModel().selectedIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            //update pointer to selected report
+            // Update pointer to selected report
             GUI1.setCurrentReportHUD((Integer) newIndex);
-            //update the text fields
+            // Update the text fields
             updateReportGUIHUD();
         });
 
-        // creation of PHA List
+        // Creation of PHA List
         ListView<PHAReport> PHAReportList = new ListView<PHAReport>();
         ObservableList<PHAReport> reportsPHA = FXCollections.observableArrayList(GUI1.getPHAReportList());
         PHAReportList.setItems(reportsPHA);
-        //create listener to get the selected report and update text fields
+        // Create listener to get the selected report and update text fields
         PHAListView.getSelectionModel().selectedIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            //update pointer to selected report
+            // Update pointer to selected report
             GUI1.setCurrentReportPHA((Integer) newIndex);
-            //update the text fields
+            // Update the text fields
             updateReportGUIPHA();
         });
     }
 
+    // Show HUD state selection context menu
     @FXML
     void showHUDContextMenu(ActionEvent event) {
         if (hudContextMenu == null || stateSelectionButtonHUD == null) return;
@@ -520,6 +531,7 @@ public class ReportGUIController {
         }
     }
 
+    // Generate analysis charts based on loaded reports
     @FXML
     void generateAnalysis(ActionEvent event) {
         // Require at least one of each report type (FMR, PHA, HUD) before generating analysis
@@ -569,7 +581,7 @@ public class ReportGUIController {
                 pb.directory(new File(projectDir));
                 pb.redirectErrorStream(true);
                 Process p = pb.start();
-                // read output (optional)
+                // Read output (optional)
                 try (java.io.InputStream is = p.getInputStream();
                      java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A")) {
                     String out = s.hasNext() ? s.next() : "";
@@ -632,6 +644,7 @@ public class ReportGUIController {
         Map<String, java.util.List<Double>> vacancyByCounty = new HashMap<>();
         Map<String, java.util.List<Double>> amiByState = new HashMap<>();
 
+        // Extract data from reports
         for (HUDReport r : reports) {
             try {
                 String s = r.getHudInspectionScore();
@@ -662,15 +675,18 @@ public class ReportGUIController {
                 BarChart<String, Number> bc1 = new BarChart<>(x1, y1);
                 bc1.setLegendVisible(false);
                 bc1.setTitle("HUD Inspection Score Distribution");
-                // buckets 60-70,70-80,...,100
+                // Buckets 60-70,70-80,...,100
                 Map<String, Integer> buckets = new HashMap<>();
+                // Populate empty buckets
                 for (double v = 60; v < 100; v += 5) buckets.put(String.format("%.0f-%.0f", v, v+5), 0);
+                // Populate buckets
                 for (Double val : inspections) {
                     double vv = Math.max(60, Math.min(99.9, val));
                     double floor = Math.floor((vv - 60) / 5) * 5 + 60;
                     String key = String.format("%.0f-%.0f", floor, floor+5);
                     buckets.put(key, buckets.getOrDefault(key, 0) + 1);
                 }
+                // Populate series
                 XYChart.Series<String, Number> s1 = new XYChart.Series<>();
                 for (Map.Entry<String, Integer> e : buckets.entrySet()) s1.getData().add(new XYChart.Data<>(e.getKey(), e.getValue()));
                 bc1.getData().add(s1);
@@ -682,6 +698,7 @@ public class ReportGUIController {
                 bc2.setLegendVisible(false);
                 bc2.setTitle("Average Vacancy Rate by County");
                 XYChart.Series<String, Number> s2 = new XYChart.Series<>();
+                // For each county, compute average vacancy
                 for (Map.Entry<String, java.util.List<Double>> e : vacancyByCounty.entrySet()) {
                     double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
                     s2.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg * 100));
@@ -695,13 +712,14 @@ public class ReportGUIController {
                 bc3.setLegendVisible(false);
                 bc3.setTitle("Average AMI by State");
                 XYChart.Series<String, Number> s3 = new XYChart.Series<>();
+                // For each state, compute average AMI
                 for (Map.Entry<String, java.util.List<Double>> e : amiByState.entrySet()) {
                     double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
                     s3.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg));
                 }
                 bc3.getData().add(s3);
 
-                // snapshot these charts to images and set into ImageViews
+                // Snapshot these charts to images and set into ImageViews
                 SnapshotParameters sp = new SnapshotParameters();
                 sp.setFill(Color.TRANSPARENT);
                 WritableImage wi1 = bc1.snapshot(sp, new WritableImage(800, 400));
@@ -710,6 +728,7 @@ public class ReportGUIController {
                 if (chart1View != null) chart1View.setImage(wi1);
                 if (chart2View != null) chart2View.setImage(wi2);
                 if (chart3View != null) chart3View.setImage(wi3);
+
                 // Create chart 4 (median tenant income by county) from PHA reports
                 try {
                     java.util.List<PHAReport> pha = GUI1.getPhaReports();
@@ -718,6 +737,7 @@ public class ReportGUIController {
                         try {
                             String county = p.getCountyName();
                             String ai = p.getAvgTenantIncome();
+                            // Only add if valid
                             if (county != null && ai != null && !ai.trim().isEmpty()) {
                                 double v = Double.parseDouble(ai);
                                 incByCounty.computeIfAbsent(county==null?"":county, k -> new java.util.ArrayList<>()).add(v);
@@ -730,6 +750,7 @@ public class ReportGUIController {
                     bc4.setLegendVisible(false);
                     bc4.setTitle("Median Tenant Income by County");
                     XYChart.Series<String, Number> s4 = new XYChart.Series<>();
+                    // For each county, compute median tenant income
                     for (Map.Entry<String, java.util.List<Double>> e : incByCounty.entrySet()) {
                         java.util.List<Double> vals = e.getValue();
                         double median = 0.0;
@@ -744,6 +765,7 @@ public class ReportGUIController {
                     bc4.getData().add(s4);
                     WritableImage wi4 = bc4.snapshot(sp, new WritableImage(800, 400));
                     if (chart4View != null) chart4View.setImage(wi4);
+
                     // Chart 5: Total assisted units by county (HUD)
                     try {
                         Map<String, Integer> assistedByCounty = new HashMap<>();
@@ -763,6 +785,7 @@ public class ReportGUIController {
                         bc5.setLegendVisible(false);
                         bc5.setTitle("Total Assisted Units by County");
                         XYChart.Series<String, Number> s5 = new XYChart.Series<>();
+                        // For each county, add total assisted units
                         for (Map.Entry<String, Integer> e : assistedByCounty.entrySet()) {
                             s5.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), e.getValue()));
                         }
@@ -770,6 +793,7 @@ public class ReportGUIController {
                         WritableImage wi5 = bc5.snapshot(sp, new WritableImage(800, 400));
                         if (chart5View != null) chart5View.setImage(wi5);
                     } catch (Exception ignored) {}
+
                     // Chart 6: Average tenant rent share by county (PHA)
                     try {
                         Map<String, java.util.List<Double>> rentShareByCounty = new HashMap<>();
@@ -789,6 +813,7 @@ public class ReportGUIController {
                         bc6.setLegendVisible(false);
                         bc6.setTitle("Average Tenant Rent Share by County");
                         XYChart.Series<String, Number> s6 = new XYChart.Series<>();
+                        // For each county, compute average rent share
                         for (Map.Entry<String, java.util.List<Double>> e : rentShareByCounty.entrySet()) {
                             double avg = e.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
                             s6.getData().add(new XYChart.Data<>(e.getKey()==null?"":e.getKey(), avg * 100));
@@ -808,6 +833,7 @@ public class ReportGUIController {
         });
     }
 
+    // Show FMR filter context menu
     @FXML
     void showFilterMenuFMR(ActionEvent event) {
         if (filterContextMenuFMR == null || stateFilterButtonFMR == null) return;
@@ -815,6 +841,7 @@ public class ReportGUIController {
         else filterContextMenuFMR.show(stateFilterButtonFMR, Side.BOTTOM, 0, 0);
     }
 
+    // Show PHA filter context menu
     @FXML
     void showFilterMenuPHA(ActionEvent event) {
         if (filterContextMenuPHA == null || stateFilterButtonPHA == null) return;
@@ -823,7 +850,7 @@ public class ReportGUIController {
     }
 
 
-    @FXML //A testing load method that loads reports without having to input the file path by hand
+    @FXML // A testing load method that loads reports without having to input the file path by hand
     //NOTE if you want to use this test method just add your own file paths
     void TestLoad(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
         // Use project-level 'Test Reports' directory relative to working directory
@@ -852,7 +879,8 @@ public class ReportGUIController {
         updateReportGUIHUD();
     }
 
-    @FXML //opens the selected report path and update GUI
+    // Opens the selected report path and update GUI
+    @FXML
     void OpenReportFMR(ActionEvent event) {
         String path = (this.ReportPath == null) ? null : this.ReportPath.getText();
         if (path == null || path.trim().isEmpty()) {
@@ -914,8 +942,8 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //opens the selected report path and update GUI
-
+    // Opens the selected report path and update GUI
+    @FXML
     // Helper: load HUD reports from given path, add them, select the first report and update GUI
     private void loadAndSelectFirstHUD(String path) throws org.xml.sax.SAXException, javax.xml.parsers.ParserConfigurationException, IOException {
         GUI1.setFilePath(path);
@@ -927,6 +955,8 @@ public class ReportGUIController {
         if (GUI1.getNumOfReportsHUD() > 0) GUI1.setCurrentReportHUD(0);
         updateReportGUIHUD();
     }
+    // FXML method to open HUD report
+    @FXML
     void OpenReportPHA(ActionEvent event) {
         String path = (this.ReportPath == null) ? null : this.ReportPath.getText();
         if (path == null || path.trim().isEmpty()) {
@@ -990,14 +1020,15 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //clear the report lists and update GUI
+    // Clear the report lists and update GUI
+    @FXML
     void ClearReports(ActionEvent event) {
         GUI1 = new ReportGUI();
 
         updateReportGUIClear();
     }
 
-    @FXML //decrease the currently selected report by one and update GUI
+    @FXML // Decrease the currently selected report by one and update GUI
     void DecreaseCurrentReportFMR(ActionEvent event) {
         int temp = GUI1.getCurrentReportFMR();
         FMRListView.getSelectionModel().clearSelection();
@@ -1007,7 +1038,7 @@ public class ReportGUIController {
         updateReportGUIFMR();
     }
 
-    @FXML //increase the currently selected report by one and update GUI
+    @FXML // Increase the currently selected report by one and update GUI
     void IncreaseCurrentReportFMR(ActionEvent event) {
         int temp = GUI1.getCurrentReportFMR();
         FMRListView.getSelectionModel().clearSelection();
@@ -1017,7 +1048,7 @@ public class ReportGUIController {
         updateReportGUIFMR();
     }
 
-    @FXML //decrease the currently selected report by one and update GUI
+    @FXML // Decrease the currently selected report by one and update GUI
     void DecreaseCurrentReportPHA(ActionEvent event) {
         int temp = GUI1.getCurrentReportPHA();
         PHAListView.getSelectionModel().clearSelection();
@@ -1027,7 +1058,7 @@ public class ReportGUIController {
         updateReportGUIPHA();
     }
 
-    @FXML //increase the currently selected report by one and update GUI
+    @FXML // Increase the currently selected report by one and update GUI
     void IncreaseCurrentReportPHA(ActionEvent event) {
         int temp = GUI1.getCurrentReportPHA();
         PHAListView.getSelectionModel().clearSelection();
@@ -1037,7 +1068,7 @@ public class ReportGUIController {
         updateReportGUIPHA();
     }
 
-    @FXML //decrease the currently selected HUD report by one and update GUI
+    @FXML // Decrease the currently selected HUD report by one and update GUI
     void DecreaseCurrentReportHUD(ActionEvent event) {
         int temp = GUI1.getCurrentReportHUD();
         HUDListView.getSelectionModel().clearSelection();
@@ -1047,7 +1078,7 @@ public class ReportGUIController {
         updateReportGUIHUD();
     }
 
-    @FXML //increase the currently selected HUD report by one and update GUI
+    @FXML // Increase the currently selected HUD report by one and update GUI
     void IncreaseCurrentReportHUD(ActionEvent event) {
         int temp = GUI1.getCurrentReportHUD();
         HUDListView.getSelectionModel().clearSelection();
@@ -1057,7 +1088,7 @@ public class ReportGUIController {
         updateReportGUIHUD();
     }
 
-    @FXML //get the ID that the user manually entered and go to it
+    @FXML // Get the ID that the user manually entered and go to it
     void GetManualReportFMR(ActionEvent event) {
         int tempReportID = Integer.parseInt(this.ManualEnterReport.getText());
 
@@ -1068,7 +1099,7 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //get the ID that the user manually entered and go to it
+    @FXML // Get the ID that the user manually entered and go to it
     void GetManualReportPHA(ActionEvent event) {
         int tempReportID = Integer.parseInt(this.ManualEnterReportPHA.getText());
 
@@ -1079,7 +1110,7 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //get the ID that the user manually entered and go to it (HUD)
+    @FXML // Get the ID that the user manually entered and go to it (HUD)
     void GetManualReportHUD(ActionEvent event) {
         int tempReportID = Integer.parseInt(this.ManualEnterReportHUD.getText());
 
@@ -1090,7 +1121,7 @@ public class ReportGUIController {
         }
     }
 
-    @FXML //apply the filters and update the GUI
+    @FXML // Apply the filters and update the GUI
     void FilterButtonFMR(ActionEvent event) {
         int temp = GUI1.getCurrentReportFMR();
         FMRListView.getSelectionModel().clearSelection();
@@ -1104,7 +1135,7 @@ public class ReportGUIController {
         updateReportGUIFMR();
     }
 
-    @FXML //apply HUD filter and update GUI
+    @FXML // Apply HUD filter and update GUI
     void FilterButtonHUD(ActionEvent event) {
         int temp = GUI1.getCurrentReportHUD();
         HUDListView.getSelectionModel().clearSelection();
@@ -1119,7 +1150,7 @@ public class ReportGUIController {
         updateReportGUIHUD();
     }
 
-    @FXML //apply the PHA filters and update the GUI
+    @FXML // Apply the PHA filters and update the GUI
     void FilterButtonPHA(ActionEvent event) {
         int temp = GUI1.getCurrentReportPHA();
         PHAListView.getSelectionModel().clearSelection();
@@ -1133,7 +1164,7 @@ public class ReportGUIController {
         updateReportGUIPHA();
     }
 
-    @FXML//toggle the filter on/off and update GUI
+    @FXML// Toggle the filter on/off and update GUI
     void ToggleFiltersFMR(ActionEvent event) {
         int temp = GUI1.getCurrentReportFMR();
         FMRListView.getSelectionModel().clearSelection();
@@ -1144,7 +1175,7 @@ public class ReportGUIController {
         updateReportGUIFMR();
     }
 
-    @FXML//toggle the PHA filter on/off and update GUI
+    @FXML// Toggle the PHA filter on/off and update GUI
     void ToggleFiltersPHA(ActionEvent event) {
         int temp = GUI1.getCurrentReportPHA();
         PHAListView.getSelectionModel().clearSelection();
@@ -1155,7 +1186,7 @@ public class ReportGUIController {
         updateReportGUIPHA();
     }
 
-    @FXML//toggle the HUD filter on/off and update GUI
+    @FXML// Toggle the HUD filter on/off and update GUI
     void ToggleFiltersHUD(ActionEvent event) {
         int temp = GUI1.getCurrentReportHUD();
         HUDListView.getSelectionModel().clearSelection();
@@ -1166,7 +1197,7 @@ public class ReportGUIController {
         updateReportGUIHUD();
     }
 
-    //update all FMR text fields
+    // Update all FMR text fields
     private void updateReportGUIFMR(){
         // If there are no FMR reports, clear the FMR display fields (match HUD behavior)
         if (GUI1.getNumOfReportsFMR() == 0) {
@@ -1174,7 +1205,7 @@ public class ReportGUIController {
             if (TotalReports != null) TotalReports.setText(String.format("%d", GUI1.getTotalNumOfReports()));
             if (TotalReportsFMR != null) TotalReportsFMR.setText("0");
             if (TotalFilteredReports != null) TotalFilteredReports.setText("0");
-            // clear single-report fields
+            // Clear single-report fields
             if (FiscalYear != null) FiscalYear.setText("");
             if (CountyName != null) CountyName.setText("");
             if (NumBedrooms != null) NumBedrooms.setText("");
@@ -1193,6 +1224,7 @@ public class ReportGUIController {
         TotalReports.setText(String.format("%d",GUI1.getTotalNumOfReports()));
         TotalReportsFMR.setText(String.format("%d",GUI1.getNumOfReportsFMR()));
 
+        // Update single-report fields
         String fy = GUI1.getCurrentFMRReportFiscalYear();
         FiscalYear.setText(fy == null ? "" : fy);
         String county = GUI1.getCurrentFMRReportCountyName();
@@ -1209,7 +1241,8 @@ public class ReportGUIController {
         ZipCode.setText(zip == null ? "" : zip);
         String state = GUI1.getCurrentFMRReportState();
         State.setText(state == null ? "" : state);
-
+        
+        // Update averages
         double avgFMR = GUI1.getAverageFMRNumber();
         if (Double.isNaN(avgFMR))
             FMRAverage.setText("");
@@ -1233,7 +1266,7 @@ public class ReportGUIController {
         FMRListView.getSelectionModel().clearSelection();
     }
 
-    //update all PHA text fields
+    // Update all PHA text fields
     private void updateReportGUIPHA() {
         // If there are no PHA reports, clear PHA display fields (match HUD behavior)
         if (GUI1.getNumOfReportsPHA() == 0) {
@@ -1241,7 +1274,7 @@ public class ReportGUIController {
             if (TotalReports != null) TotalReports.setText(String.format("%d", GUI1.getTotalNumOfReports()));
             if (TotalReportsPHA != null) TotalReportsPHA.setText("0");
             if (TotalFilteredReportsPHA != null) TotalFilteredReportsPHA.setText("0");
-            // clear PHA-specific fields
+            // Clear PHA-specific fields
             if (StatePHA != null) StatePHA.setText("");
             if (CityPHA != null) CityPHA.setText("");
             if (CountyNamePHA != null) CountyNamePHA.setText("");
@@ -1270,6 +1303,7 @@ public class ReportGUIController {
         TotalReports.setText(String.format("%d", GUI1.getTotalNumOfReports()));
         TotalReportsPHA.setText(String.format("%d", GUI1.getNumOfReportsPHA()));
 
+        // Update PHA-specific fields
         String sPHA = GUI1.getCurrentPHAReportState();
         StatePHA.setText(sPHA == null ? "" : sPHA);
         String city = GUI1.getCurrentPHAReportCity();
@@ -1348,30 +1382,30 @@ public class ReportGUIController {
                 }
             }
         }
-        // ... existing PHA field updates ...
+        // ... Existing PHA field updates ...
 
-        //Display average HCV Utilisation Rate
+        // Display Average HCV Utilisation Rate
         double avgHcvUtil = GUI1.getAverageHcvUtilRatePHA();
         if (Double.isNaN(avgHcvUtil))
             AvgHCVUtilRatePHA.setText("");
         else
             AvgHCVUtilRatePHA.setText(String.format("%.2f%%", avgHcvUtil * 100));  // Display as percentage
 
-        //Display average Occupancy Rate
+        // Display Average Occupancy Rate
         double avgOcc = GUI1.getAvgOccupancyRatePHA();
         if (Double.isNaN(avgOcc))
             AvgOccupancyRatePHA.setText("");
         else
             AvgOccupancyRatePHA.setText(String.format("%.2f%%", avgOcc * 100));
 
-        //Display average Inspection Compliance Rate
+        // Display average Inspection Compliance Rate
         double avgComp = GUI1.getAvgInspectionRatePHA();
         if (Double.isNaN(avgComp))
             AvgInspectCompPHA.setText("");
         else
             AvgInspectCompPHA.setText(String.format("%.2f%%", avgComp * 100));
 
-        //Display median Tenant Income
+        // Display Median Tenant Income
         double medIncome = GUI1.getMedianTenantIncomePHA();
         if (Double.isNaN(medIncome))
             MedTenantIncomePHA.setText("0.00");
@@ -1379,7 +1413,7 @@ public class ReportGUIController {
             MedTenantIncomePHA.setText(String.format("$%.2f", medIncome));
            
 
-        //Display average HCV Units
+        // Display Average HCV Units
         double avgUnits = GUI1.getAvgHcvUnitsPHA();
 
         if (Double.isNaN(avgUnits))
@@ -1392,7 +1426,7 @@ public class ReportGUIController {
         PHAListView.getSelectionModel().clearSelection();
     }
 
-    //update HUD text fields (basic currently: current/total counts)
+    // Update HUD text fields (basic currently: current/total counts)
     private void updateReportGUIHUD(){
         if (GUI1.getNumOfReportsHUD() == 0) {
             if (CurrentReportHUD != null) CurrentReportHUD.setText("");
@@ -1468,7 +1502,7 @@ public class ReportGUIController {
         HUDListView.getSelectionModel().clearSelection();
     }
 
-    //clear all text fields to base values
+    // Clear all text fields to base values
     private void updateReportGUIClear(){
         TotalReports.setText("0");
         TotalReportsFMR.setText("0");

@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # Ensure the repository root is on sys.path so relative sibling packages
-# (like `Util`) can be imported when running from `Crawlers/`.
+# (like Util) can be imported when running from Crawlers folder.
 repo_root = Path(__file__).resolve().parents[1]
 if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
@@ -21,8 +21,8 @@ from PHADomain import (
 )
 from Util.crawler_utils import load_dataset, ensure_columns, dataframe_to_xml
 
+# This class is a prototype static file PHA crawler that normalizes data and creates XML reports.
 class PHACrawler:
-    """Prototype static file PHA crawler that normalizes data and creates XML reports."""
 
     def __init__(self, dataset_path=None):
         self.dataset_path = dataset_path
@@ -66,7 +66,7 @@ class PHACrawler:
 
     # Generate example records using your domain objects
     def generate_record_objects(self):
-        self.records.clear()  # avoid duplicates
+        self.records.clear()  # Avoid duplicates
         for _, row in self.df.iterrows():
             primary = Primary(row["pha_code"], row["name"], row["hud_regional_code"], row["jurisdiction"],
                               row["address"], row["city"], row["state_code"], row["state_name"],
@@ -92,14 +92,14 @@ class PHACrawler:
 
 
 # Tester block
-
+# Run this module directly to test the PHACrawler functionality
 if __name__ == "__main__":
     crawler_folder = os.path.dirname(os.path.abspath(__file__))
-    # place test outputs into the repository-level 'Test Reports' folder
+    # Place test outputs into the repository-level Test Reports folder
     repo_root = os.path.abspath(os.path.join(crawler_folder, os.pardir))
     excel_path = os.path.join(repo_root, "Test Excels", "PHA_Crawler_Test_Excel.xlsx")
     xml_path = os.path.join(repo_root, "Test Reports", "TestPHAReport.xml")
-
+    # Run the crawler
     try:
         crawler = PHACrawler(excel_path)
         crawler.load()

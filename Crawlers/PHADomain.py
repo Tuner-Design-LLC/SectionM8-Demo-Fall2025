@@ -1,6 +1,7 @@
 # Consolidated PHA attributes
-#Updated Attributes, with setters and getters
+# Updated Attributes, with setters and getters
 
+# The Primary class encapsulates primary identification details of a Public Housing Agency (PHA).
 class Primary:
     def __init__(self, code, name, regCode, juris, address, city, stateCode, stateName, zip, countyName, fips):
         self.__pha_code = code
@@ -91,6 +92,7 @@ class Primary:
     def set_fips_code(self, value):
         self.__fips_code = value
 
+# The HousingProgram class encapsulates housing program details of a Public Housing Agency (PHA).
 class HousingProgram:
     def __init__(self, progType, hvc, public, total, waitingList, occRate, hcvUtil):
         self.__program_type = progType
@@ -150,6 +152,7 @@ class HousingProgram:
     def set_hcv_utilization(self, value):
         self.__hcv_util_rate = value
 
+# The GeographicContextual class encapsulates geographic and contextual details of a Public Housing Agency (PHA).
 class GeographicContextual:
     def __init__(self, latitude, longitude, msa, hud, rural):
         self.__latitude = latitude
@@ -193,6 +196,7 @@ class GeographicContextual:
     def set_rural_indicator(self, value):
         self.__rural_indicator = value
 
+# The FinanceFunding class encapsulates financial and funding details of a Public Housing Agency (PHA).
 class FinanceFunding:
     def __init__(self, annual, capital, financial):
         self.__annual_budget = annual
@@ -220,6 +224,7 @@ class FinanceFunding:
     def set_financial_report_year(self, value):
         self.__financial_report_year = value
 
+# The DemographicOccupancy class encapsulates demographic and occupancy details of a Public Housing Agency (PHA).
 class DemographicOccupancy:
     def __init__(self, income, median, household, rentShare, amount):
         self.__avg_tenant_income = income
@@ -263,6 +268,7 @@ class DemographicOccupancy:
     def set_avg_subsidy_amount(self, value):
         self.__avg_subsidy_amount = value
 
+# The CompliancePerformance class encapsulates compliance and performance details of a Public Housing Agency (PHA).
 class CompliancePerformance:
     def __init__(self, semap, hud, inspection, performance, last):
         self.__semap_score = semap
@@ -306,6 +312,7 @@ class CompliancePerformance:
     def set_last_updated(self, value):
         self.__last_updated = value
 
+# The AnalyticsMetadata class encapsulates metadata details of a Public Housing Agency (PHA) dataset.
 class AnalyticsMetadata:
     def __init__(self, source, scrape, version, dataset, update, license, crawler):
         self.__source_url = source
@@ -365,6 +372,7 @@ class AnalyticsMetadata:
     def set_crawler_run_data(self, value):
         self.__crawler_run_data = value
 
+# The AdministrativeContact class encapsulates administrative contact details of a Public Housing Agency (PHA).
 class AdministrativeContact:
     def __init__(self, number, fax, email, exDirect, contactLast):
         self.__phone_number = number
