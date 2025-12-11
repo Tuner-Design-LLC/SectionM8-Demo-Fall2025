@@ -1123,47 +1123,77 @@ public class ReportGUIController {
 
     @FXML // Apply the filters and update the GUI
     void FilterButtonFMR(ActionEvent event) {
+        int temp = GUI1.getCurrentReportFMR();
+        FMRListView.getSelectionModel().clearSelection();
+
         GUI1.resetFilterReportListFMR();
         String state = (filterStateValueFMR == null) ? "" : filterStateValueFMR;
         GUI1.filterReportsByStateFMR(state);
         TotalFilteredReports.setText(String.format("%d",GUI1.getNumOfFilteredReportsFMR()));
+
+        GUI1.setCurrentReportFMR(temp);
         updateReportGUIFMR();
     }
 
     @FXML // Apply HUD filter and update GUI
     void FilterButtonHUD(ActionEvent event) {
+        int temp = GUI1.getCurrentReportHUD();
+        HUDListView.getSelectionModel().clearSelection();
+
         GUI1.resetFilterReportListHUD();
         String state = (filterStateValueHUD == null) ? "" : filterStateValueHUD;
         GUI1.filterReportsByStateHUD(state);
         if (TotalFilteredReportsHUD != null)
             TotalFilteredReportsHUD.setText(String.format("%d", GUI1.getNumOfFilteredReportsHUD()));
+
+        GUI1.setCurrentReportHUD(temp);
         updateReportGUIHUD();
     }
 
     @FXML // Apply the PHA filters and update the GUI
     void FilterButtonPHA(ActionEvent event) {
+        int temp = GUI1.getCurrentReportPHA();
+        PHAListView.getSelectionModel().clearSelection();
+
         GUI1.resetFilterReportListPHA();
         String state = (filterStateValuePHA == null) ? "" : filterStateValuePHA;
         GUI1.filterReportsByStatePHA(state);
         TotalFilteredReportsPHA.setText(String.format("%d", GUI1.getNumOfFilteredReportsPHA()));
+
+        GUI1.setCurrentReportPHA(temp);
         updateReportGUIPHA();
     }
 
     @FXML// Toggle the filter on/off and update GUI
     void ToggleFiltersFMR(ActionEvent event) {
+        int temp = GUI1.getCurrentReportFMR();
+        FMRListView.getSelectionModel().clearSelection();
+
         GUI1.toggleFilterFMR();
+
+        GUI1.setCurrentReportFMR(temp);
         updateReportGUIFMR();
     }
 
     @FXML// Toggle the PHA filter on/off and update GUI
     void ToggleFiltersPHA(ActionEvent event) {
+        int temp = GUI1.getCurrentReportPHA();
+        PHAListView.getSelectionModel().clearSelection();
+
         GUI1.toggleFilterPHA();
+
+        GUI1.setCurrentReportPHA(temp);
         updateReportGUIPHA();
     }
 
     @FXML// Toggle the HUD filter on/off and update GUI
     void ToggleFiltersHUD(ActionEvent event) {
+        int temp = GUI1.getCurrentReportHUD();
+        HUDListView.getSelectionModel().clearSelection();
+
         GUI1.toggleFilterHUD();
+
+        GUI1.setCurrentReportHUD(temp);
         updateReportGUIHUD();
     }
 
