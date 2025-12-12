@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crawlers.reportgui.ReportGUIController">
+<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crawlers.reportgui.ReportGUIController">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1270.0">
             <children>
@@ -32,165 +18,165 @@
                         </ImageView>
                     </children>
                 </HBox>
-          <Label layoutX="14.0" layoutY="234.0" text="Report Data Path:" />
-          <TextField fx:id="ReportPath" layoutX="150.0" layoutY="230.0" prefHeight="25.0" prefWidth="480.0" promptText="Choose file or folder" />
-          <Button fx:id="BrowseButton" layoutX="642.0" layoutY="230.0" mnemonicParsing="false" onAction="#BrowseReport" text="Browse..." />
-          <Button fx:id="TopOpenReports" layoutX="718.0" layoutY="230.0" mnemonicParsing="false" onAction="#OpenReports" text="Open Reports" />
-          <Button fx:id="ClearButton" layoutX="820.0" layoutY="230.0" mnemonicParsing="false" onAction="#ClearReports" text="Clear All Reports" />
-          <Label alignment="CENTER_RIGHT" layoutX="998.0" layoutY="234.0" prefHeight="17.0" prefWidth="129.0" text="Total Reports Loaded:" />
-          <TextField fx:id="TotalReports" editable="false" layoutX="1142.0" layoutY="230.0" prefHeight="25.0" prefWidth="90.0" text="0" />
-          <TabPane fx:id="MainTabPane" layoutX="7.0" layoutY="277.0" prefHeight="543.0" prefWidth="1256.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="FMR Reports">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="454.0" prefWidth="1256.0">
-                            <children>
-                                <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
+                <Label layoutX="14.0" layoutY="234.0" text="Report Data Path:" />
+                <TextField fx:id="ReportPath" layoutX="150.0" layoutY="230.0" prefHeight="25.0" prefWidth="480.0" promptText="Choose file or folder" />
+                <Button fx:id="BrowseButton" layoutX="642.0" layoutY="230.0" mnemonicParsing="false" onAction="#BrowseReport" text="Browse..." />
+                <Button fx:id="TopOpenReports" layoutX="718.0" layoutY="230.0" mnemonicParsing="false" onAction="#OpenReports" text="Open Reports" />
+                <Button fx:id="ClearButton" layoutX="820.0" layoutY="230.0" mnemonicParsing="false" onAction="#ClearReports" text="Clear All Reports" />
+                <Label alignment="CENTER_RIGHT" layoutX="998.0" layoutY="234.0" prefHeight="17.0" prefWidth="129.0" text="Total Reports Loaded:" />
+                <TextField fx:id="TotalReports" editable="false" layoutX="1142.0" layoutY="230.0" prefHeight="25.0" prefWidth="90.0" text="0" />
+                <TabPane fx:id="MainTabPane" layoutX="7.0" layoutY="277.0" prefHeight="543.0" prefWidth="1256.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="FMR Reports">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="454.0" prefWidth="1256.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="467.0" prefWidth="372.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                        <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="221.0" text="Fiscal Year:">
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
                                                     <font>
-                                                        <Font size="14.0" />
+                                                        <Font size="30.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="FiscalYear" editable="false" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="State" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="CountyName" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="ZipCode" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="216.0" text="Fair Market Rent:" GridPane.rowIndex="7">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="FMRNumber" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="261.0" text="Market Type:" GridPane.rowIndex="4">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="MarketType" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="196.0" text="Median Household Income:" GridPane.rowIndex="5">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="HouseholdIncome" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="225.0" text="Number Of Bedrooms:" GridPane.rowIndex="6">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="NumBedrooms" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <GridPane prefHeight="467.0" prefWidth="372.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="221.0" text="Fiscal Year:">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="FiscalYear" editable="false" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:" GridPane.rowIndex="1">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="State" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="CountyName" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="ZipCode" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="216.0" text="Fair Market Rent:" GridPane.rowIndex="7">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="FMRNumber" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="261.0" text="Market Type:" GridPane.rowIndex="4">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="MarketType" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="196.0" text="Median Household Income:" GridPane.rowIndex="5">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="HouseholdIncome" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="225.0" text="Number Of Bedrooms:" GridPane.rowIndex="6">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="NumBedrooms" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                    </children>
+                                                </GridPane>
                                             </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="396.0" layoutY="56.0" prefHeight="178.0" prefWidth="384.0">
-                                    <children>
-                                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="120.0" prefWidth="417.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                        </VBox>
+                                        <VBox layoutX="396.0" layoutY="56.0" prefHeight="178.0" prefWidth="384.0">
                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="286.0" text="Average FMR:">
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
                                                     <font>
-                                                        <Font size="14.0" />
+                                                        <Font size="30.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="FMRAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="245.0" text="Average Household Income:" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="IncomeAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="255.0" text="Average Number of Bedrooms:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="BedroomAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <GridPane prefHeight="120.0" prefWidth="417.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="286.0" text="Average FMR:">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="FMRAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="245.0" text="Average Household Income:" GridPane.rowIndex="1">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="IncomeAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="255.0" text="Average Number of Bedrooms:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="BedroomAverage" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                    </children>
+                                                </GridPane>
+                                                <!-- removed duplicate in-tab ReportPath field; top Browse field now uses fx:id="ReportPath" -->
                                             </children>
-                                        </GridPane>
-                                        <!-- removed duplicate in-tab ReportPath field; top Browse field now uses fx:id="ReportPath" -->
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="792.0" layoutY="68.0" prefHeight="154.0" prefWidth="248.0">
-                                    <children>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="61.0" prefWidth="258.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                        </VBox>
+                                        <VBox layoutX="792.0" layoutY="68.0" prefHeight="154.0" prefWidth="248.0">
                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
                                                     <font>
-                                                        <Font size="14.0" />
+                                                        <Font size="30.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="stateFilterButtonFMR" onAction="#showFilterMenuFMR" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
-                                                <TextField fx:id="TotalFilteredReports" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <GridPane prefHeight="61.0" prefWidth="258.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="stateFilterButtonFMR" onAction="#showFilterMenuFMR" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
+                                                        <TextField fx:id="TotalFilteredReports" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                    </children>
+                                                </GridPane>
                                             </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
+                                        </VBox>
                                         <VBox alignment="CENTER" prefWidth="846.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
                                             <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Report List View">
@@ -201,464 +187,464 @@
                                                 <ListView fx:id="FMRListView" prefHeight="70.0" prefWidth="846.0" VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
-                                <Button layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonFMR" text="Filter" />
-                                <CheckBox contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersFMR" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
-                                <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
-                                <TextField fx:id="CurrentReport" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" text="+">
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font></Button>
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
-                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
-                                <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
-                                <TextField fx:id="ManualEnterReport" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
-                                <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportFMR" text="Go To Report" />
-                                <!-- Open Reports moved to top; removed per design -->
-                                <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="FMR Reports Loaded:" />
-                                <TextField fx:id="TotalReportsFMR" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab fx:id="HUDList" text="HUD Reports">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="1256.0">
-                            <children>
-                                <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
-                                    <children>
-                                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
+                                        <Button layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonFMR" text="Filter" />
+                                        <CheckBox contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersFMR" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
+                                        <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
+                                        <TextField fx:id="CurrentReport" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" text="+">
                                             <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="458.0" prefWidth="372.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="stateHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="countyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="zipcodeHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="216.0" text="Property ID:" GridPane.rowIndex="7">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="propertyIDHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <TextField fx:id="fiscalYearHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="196.0" text="AMI (County):" GridPane.rowIndex="5">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="AMIByCountyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="225.0" text="Owner: " GridPane.rowIndex="6">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="ownerHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="261.0" text="Property Address:" GridPane.rowIndex="4">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="243.0" prefHeight="20.0" prefWidth="216.0" text="Available Units (County):" GridPane.rowIndex="8">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableUnitsHUD" editable="false" layoutX="196.0" layoutY="240.0" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="221.0" text="Fiscal Year:">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="propertyAddressHUD" editable="false" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="396.0" layoutY="56.0" prefHeight="178.0" prefWidth="384.0">
-                                    <children>
-                                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="120.0" prefWidth="417.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.800048828125" minWidth="10.0" prefWidth="207.20001220703125" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.199951171875" minWidth="10.0" prefWidth="176.79998779296875" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="286.0" text="Average Median Income:">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="avgMedianIncomeHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="245.0" text="Average Vacancy Rate:" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="avgVacancyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="255.0" text="Average HUD Inspection Score:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="avgInspectScoreHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="792.0" layoutY="68.0" prefHeight="154.0" prefWidth="248.0">
-                                    <children>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="61.0" prefWidth="258.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
-                                                <TextField fx:id="TotalFilteredReportsHUD" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Button fx:id="stateSelectionButtonHUD" onAction="#showHUDContextMenu" prefWidth="150.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                              <VBox alignment="CENTER" prefWidth="846.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Report List View">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="HUDListView" prefHeight="271.0" prefWidth="846.0" />
-                                 </children>
-                              </VBox>
-                                <Button fx:id="FilterButtonHUD" layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonHUD" text="Filter" />
-                                <CheckBox fx:id="UseFiltersHUD" contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersHUD" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
-                                <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
-                                <TextField fx:id="CurrentReportHUD" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" text="+" />
-                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" text="-" />
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
-                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
-                                <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
-                                <TextField fx:id="ManualEnterReportHUD" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
-                                <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportHUD" text="Go To Report" />
-                                <!-- Open Reports moved to top; removed per design -->
-                                <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="HUD Reports Loaded:" />
-                                <TextField fx:id="TotalReportsHUD" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-
-                <Tab text="PHA Reports">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="1031.0">
-                            <children>
-                                <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
-                                    <children>
-                                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="421.0" prefWidth="372.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="StatePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="CountyNamePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="ZipCodePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="City:" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="CityPHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Address" GridPane.rowIndex="4">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="AddressPHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label text="Jurisdiction:" textAlignment="RIGHT" GridPane.rowIndex="5">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="PHA Code:" GridPane.rowIndex="6">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="JurisdictionPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <TextField fx:id="PHACode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <Label text="Number of Units:" GridPane.rowIndex="7">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="Occupancy Rate:" GridPane.rowIndex="8">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="HCV Utilisation Rate:" GridPane.rowIndex="9">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="Inspection Compliance Rate:" GridPane.rowIndex="10">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="Average Tenant Income:" GridPane.rowIndex="11">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="HCVUnitsPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <TextField fx:id="OccupancyRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                <TextField fx:id="HCVUtilRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                                <TextField fx:id="InspectCompPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                <TextField fx:id="TenantIncomePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                                <Label text="Executive Director:" GridPane.rowIndex="12">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="DirectorPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                                <Label text="Phone Number:" GridPane.rowIndex="13">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="PhonePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                                                <Label text="Fax Line:" GridPane.rowIndex="14">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="FaxPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                                                <TextField fx:id="EmailPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                                                <Label text="Email:" GridPane.rowIndex="15">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="396.0" layoutY="56.0" prefHeight="187.0" prefWidth="384.0">
-                                    <children>
-                                    <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
-                                        <GridPane>
-                                            <columnConstraints>
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label text="Number of Units:" />
-                                                <Label text="Occupancy Rate:" GridPane.rowIndex="1" />
-                                                <Label GridPane.rowIndex="2" />
-                                                <Label prefHeight="17.0" prefWidth="155.0" text="Inspection Compliance Rate:" GridPane.rowIndex="3" />
-                                                <Label text="Median Tenant Income:" GridPane.rowIndex="4" />
-                                                <Label text="HCV Utilisation Rate:" GridPane.rowIndex="2" />
-                                                <TextField fx:id="AvgHCVUnitsPHA" editable="false" GridPane.columnIndex="1" />
-                                                <TextField fx:id="AvgOccupancyRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="AvgHCVUtilRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="AvgInspectCompPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="MedTenantIncomePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                                <VBox layoutX="792.0" layoutY="68.0" prefHeight="114.0" prefWidth="248.0">
-                                    <children>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </Label>
-                                        <GridPane prefHeight="61.0" prefWidth="258.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Button fx:id="stateFilterButtonPHA" onAction="#showFilterMenuPHA" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
-                                                <TextField fx:id="TotalFilteredReportsPHA" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </VBox>
-                              <VBox alignment="CENTER" prefWidth="846.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Report List View">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="PHAListView" prefHeight="70.0" prefWidth="846.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                                <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
-                                <TextField fx:id="CurrentReportPHA" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" text="+" />
-                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" text="-" />
-                                <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
-                                <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
-                                <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
-                                <TextField fx:id="ManualEnterReportPHA" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
-                                <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportPHA" text="Go To Report" />
-                                <!-- Open Reports moved to top; removed per design -->
-                                <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="PHA Reports Loaded:" />
-                                <TextField fx:id="TotalReportsPHA" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
-                                <CheckBox layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersPHA" text="Use Filters" />
-                                <Button layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonPHA" text="Filter" />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Analysis">
-                    <content>
-                        <ScrollPane fitToHeight="false" fitToWidth="false" prefViewportHeight="420.0" prefViewportWidth="1200.0">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1256.0">
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="400.0" text="Analysis Dashboard">
-                                       <font>
-                                          <Font name="System Bold" size="24.0" />
-                                       </font></Label>
-                                        <Button layoutX="1040.0" layoutY="10.0" mnemonicParsing="false" onAction="#generateAnalysis" text="Generate Analysis Charts" />
-                                        <ImageView fx:id="chart1View" fitHeight="300.0" fitWidth="400.0" layoutX="14.0" layoutY="50.0" preserveRatio="true" />
-                                        <ImageView fx:id="chart2View" fitHeight="300.0" fitWidth="400.0" layoutX="430.0" layoutY="50.0" preserveRatio="true" />
-                                        <ImageView fx:id="chart3View" fitHeight="300.0" fitWidth="400.0" layoutX="846.0" layoutY="50.0" preserveRatio="true" />
-                                        <ImageView fx:id="chart4View" fitHeight="300.0" fitWidth="400.0" layoutX="14.0" layoutY="370.0" preserveRatio="true" />
-                                        <ImageView fx:id="chart5View" fitHeight="300.0" fitWidth="400.0" layoutX="430.0" layoutY="370.0" preserveRatio="true" />
-                                        <ImageView fx:id="chart6View" fitHeight="300.0" fitWidth="400.0" layoutX="846.0" layoutY="370.0" preserveRatio="true" />
+                                                <Font name="System Bold" size="12.0" />
+                                            </font></Button>
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportFMR" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
+                                        <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
+                                        <TextField fx:id="ManualEnterReport" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
+                                        <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportFMR" text="Go To Report" />
+                                        <!-- Open Reports moved to top; removed per design -->
+                                        <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="FMR Reports Loaded:" />
+                                        <TextField fx:id="TotalReportsFMR" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
                                     </children>
                                 </AnchorPane>
                             </content>
-                        </ScrollPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-        <Button layoutX="936.0" layoutY="230.0" mnemonicParsing="false" onAction="#TestLoad" text="Test Load" />
+                        </Tab>
+                        <Tab fx:id="HUDList" text="HUD Reports">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="1256.0">
+                                    <children>
+                                        <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane prefHeight="458.0" prefWidth="372.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:" GridPane.rowIndex="1">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="stateHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="countyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="zipcodeHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="216.0" text="Property ID:" GridPane.rowIndex="7">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="propertyIDHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                        <TextField fx:id="fiscalYearHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="196.0" text="AMI (County):" GridPane.rowIndex="5">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="AMIByCountyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="225.0" text="Owner: " GridPane.rowIndex="6">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="ownerHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="261.0" text="Property Address:" GridPane.rowIndex="4">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="243.0" prefHeight="20.0" prefWidth="216.0" text="Available Units (County):" GridPane.rowIndex="8">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="availableUnitsHUD" editable="false" layoutX="196.0" layoutY="240.0" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="221.0" text="Fiscal Year:">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="propertyAddressHUD" editable="false" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="396.0" layoutY="56.0" prefHeight="178.0" prefWidth="384.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane prefHeight="120.0" prefWidth="417.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.800048828125" minWidth="10.0" prefWidth="207.20001220703125" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.199951171875" minWidth="10.0" prefWidth="176.79998779296875" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="286.0" text="Average Median Income:">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="avgMedianIncomeHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="245.0" text="Average Vacancy Rate:" GridPane.rowIndex="1">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="avgVacancyHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="255.0" text="Average HUD Inspection Score:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="avgInspectScoreHUD" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="792.0" layoutY="68.0" prefHeight="154.0" prefWidth="248.0">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane prefHeight="61.0" prefWidth="258.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
+                                                        <TextField fx:id="TotalFilteredReportsHUD" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Button fx:id="stateSelectionButtonHUD" onAction="#showHUDContextMenu" prefWidth="150.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" prefWidth="846.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Report List View">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <ListView fx:id="HUDListView" prefHeight="271.0" prefWidth="846.0" />
+                                            </children>
+                                        </VBox>
+                                        <Button fx:id="FilterButtonHUD" layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonHUD" text="Filter" />
+                                        <CheckBox fx:id="UseFiltersHUD" contentDisplay="CENTER" layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersHUD" prefHeight="17.0" prefWidth="88.0" text="Use Filters" />
+                                        <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
+                                        <TextField fx:id="CurrentReportHUD" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" text="+" />
+                                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" text="-" />
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportHUD" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
+                                        <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
+                                        <TextField fx:id="ManualEnterReportHUD" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
+                                        <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportHUD" text="Go To Report" />
+                                        <!-- Open Reports moved to top; removed per design -->
+                                        <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="HUD Reports Loaded:" />
+                                        <TextField fx:id="TotalReportsHUD" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <Tab text="PHA Reports">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="1031.0">
+                                    <children>
+                                        <VBox layoutX="14.0" layoutY="56.0" prefHeight="446.0" prefWidth="372.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="385.0" text="Single Report View">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane prefHeight="421.0" prefWidth="372.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="State:">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="StatePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="231.0" text="County:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="CountyNamePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Zip Code:" GridPane.rowIndex="3">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="ZipCodePHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="266.0" text="City:" GridPane.rowIndex="1">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="CityPHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="250.0" text="Address" GridPane.rowIndex="4">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="AddressPHA" editable="false" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                        <Label text="Jurisdiction:" textAlignment="RIGHT" GridPane.rowIndex="5">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="PHA Code:" GridPane.rowIndex="6">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="JurisdictionPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                        <TextField fx:id="PHACode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                        <Label text="Number of Units:" GridPane.rowIndex="7">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Occupancy Rate:" GridPane.rowIndex="8">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="HCV Utilisation Rate:" GridPane.rowIndex="9">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Inspection Compliance Rate:" GridPane.rowIndex="10">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Average Tenant Income:" GridPane.rowIndex="11">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="HCVUnitsPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                        <TextField fx:id="OccupancyRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                        <TextField fx:id="HCVUtilRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                                        <TextField fx:id="InspectCompPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                                        <TextField fx:id="TenantIncomePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                                        <Label text="Executive Director:" GridPane.rowIndex="12">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="DirectorPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                                        <Label text="Phone Number:" GridPane.rowIndex="13">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="PhonePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                                        <Label text="Fax Line:" GridPane.rowIndex="14">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="FaxPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                                                        <TextField fx:id="EmailPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                                                        <Label text="Email:" GridPane.rowIndex="15">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="396.0" layoutY="56.0" prefHeight="187.0" prefWidth="384.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="45.0" prefWidth="417.0" text="Report Set Data">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane>
+                                                    <columnConstraints>
+                                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label text="Average Number of Units:" />
+                                                        <Label text="Average Occupancy Rate:" GridPane.rowIndex="1" />
+                                                        <Label GridPane.rowIndex="2" />
+                                                        <Label prefHeight="17.0" prefWidth="155.0" text="Average Inspection Compliance Rate:" GridPane.rowIndex="3" />
+                                                        <Label text="Median Average Tenant Income:" GridPane.rowIndex="4" />
+                                                        <Label text="Average HCV Utilisation Rate:" GridPane.rowIndex="2" />
+                                                        <TextField fx:id="AvgHCVUnitsPHA" editable="false" GridPane.columnIndex="1" />
+                                                        <TextField fx:id="AvgOccupancyRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <TextField fx:id="AvgHCVUtilRatePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <TextField fx:id="AvgInspectCompPHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                        <TextField fx:id="MedTenantIncomePHA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="792.0" layoutY="68.0" prefHeight="114.0" prefWidth="248.0">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Filters">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <GridPane prefHeight="61.0" prefWidth="258.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="128.0" text="State:" GridPane.rowIndex="2">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="stateFilterButtonPHA" onAction="#showFilterMenuPHA" prefWidth="240.0" text="Select State" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="129.0" text="Total Filtered Reports:" GridPane.rowIndex="1" />
+                                                        <TextField fx:id="TotalFilteredReportsPHA" editable="false" prefHeight="25.0" prefWidth="90.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" prefWidth="846.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="272.0" text="Report List View">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <ListView fx:id="PHAListView" prefHeight="70.0" prefWidth="846.0" VBox.vgrow="ALWAYS" />
+                                            </children>
+                                        </VBox>
+                                        <Label layoutX="251.0" layoutY="9.0" text="Current Report" />
+                                        <TextField fx:id="CurrentReportPHA" alignment="CENTER" editable="false" layoutX="243.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" />
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" text="+" />
+                                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" text="-" />
+                                        <Button layoutX="346.0" layoutY="31.0" mnemonicParsing="false" onAction="#IncreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="+" />
+                                        <Button layoutX="193.0" layoutY="31.0" mnemonicParsing="false" onAction="#DecreaseCurrentReportPHA" prefWidth="40.0" style="-fx-font-weight: bold;" text="-" />
+                                        <Label layoutX="467.0" layoutY="9.0" prefHeight="17.0" prefWidth="136.0" text="Manual Report Selection" />
+                                        <TextField fx:id="ManualEnterReportPHA" alignment="CENTER" layoutX="440.0" layoutY="31.0" prefHeight="25.0" prefWidth="94.0" promptText="Enter ID" />
+                                        <Button layoutX="543.0" layoutY="31.0" mnemonicParsing="false" onAction="#GetManualReportPHA" text="Go To Report" />
+                                        <!-- Open Reports moved to top; removed per design -->
+                                        <Label alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="35.0" prefHeight="17.0" prefWidth="129.0" text="PHA Reports Loaded:" />
+                                        <TextField fx:id="TotalReportsPHA" editable="false" layoutX="1162.0" layoutY="31.0" prefHeight="25.0" prefWidth="90.0" text="0" />
+                                        <CheckBox layoutX="845.0" layoutY="35.0" mnemonicParsing="false" onAction="#ToggleFiltersPHA" text="Use Filters" />
+                                        <Button layoutX="954.0" layoutY="31.0" mnemonicParsing="false" onAction="#FilterButtonPHA" text="Filter" />
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Analysis">
+                            <content>
+                                <ScrollPane fitToHeight="false" fitToWidth="false" prefViewportHeight="420.0" prefViewportWidth="1200.0">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1256.0">
+                                            <children>
+                                                <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="400.0" text="Analysis Dashboard">
+                                                    <font>
+                                                        <Font name="System Bold" size="24.0" />
+                                                    </font></Label>
+                                                <Button layoutX="1040.0" layoutY="10.0" mnemonicParsing="false" onAction="#generateAnalysis" text="Generate Analysis Charts" />
+                                                <ImageView fx:id="chart1View" fitHeight="300.0" fitWidth="400.0" layoutX="14.0" layoutY="50.0" preserveRatio="true" />
+                                                <ImageView fx:id="chart2View" fitHeight="300.0" fitWidth="400.0" layoutX="430.0" layoutY="50.0" preserveRatio="true" />
+                                                <ImageView fx:id="chart3View" fitHeight="300.0" fitWidth="400.0" layoutX="846.0" layoutY="50.0" preserveRatio="true" />
+                                                <ImageView fx:id="chart4View" fitHeight="300.0" fitWidth="400.0" layoutX="14.0" layoutY="370.0" preserveRatio="true" />
+                                                <ImageView fx:id="chart5View" fitHeight="300.0" fitWidth="400.0" layoutX="430.0" layoutY="370.0" preserveRatio="true" />
+                                                <ImageView fx:id="chart6View" fitHeight="300.0" fitWidth="400.0" layoutX="846.0" layoutY="370.0" preserveRatio="true" />
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </ScrollPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <Button layoutX="936.0" layoutY="230.0" mnemonicParsing="false" onAction="#TestLoad" text="Test Load" />
             </children>
         </AnchorPane>
     </children>
